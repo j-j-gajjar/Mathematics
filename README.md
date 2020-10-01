@@ -1,4 +1,4 @@
-# newsappflutter
+# Mathematics flutter
 
 * Addition / Substitution / Multiplication / Division 
 * Generate MCQ PDF / Question PDF : With Answer
