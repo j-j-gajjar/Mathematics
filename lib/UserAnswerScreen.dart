@@ -76,8 +76,8 @@ class _UserAnswerScreenState extends State<UserAnswerScreen> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(widget.answers[i].toString(),
-                      style: TextStyle(color: Colors.yellow, fontSize: 15)),
+                  subtitle: Text("Answer = ${widget.answers[i].toString()}",
+                      style: TextStyle(color: Colors.green, fontSize: 15)),
                   trailing: Text(
                     "${widget.userAnswer[i].toString()}",
                     style: TextStyle(fontSize: 20, color: Colors.white),
