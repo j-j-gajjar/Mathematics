@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mathamatics/AnswerScreen.dart';
@@ -29,8 +30,28 @@ class _QuizScreenState extends State<QuizScreen> {
   var ansData;
   List<dynamic> ans = [];
   var j = 0;
+  MobileAdTargetingInfo targetingInfo;
+  BannerAd myBanner;
   @override
   void initState() {
+    targetingInfo = MobileAdTargetingInfo(
+      keywords: <String>['maths', 'education', 'school', 'college', 'study'],
+      contentUrl: 'https://flutter.io',
+      birthday: DateTime.now(),
+      childDirected: false,
+      designedForFamilies: false,
+      gender: MobileAdGender.unknown,
+      testDevices: <String>[], // Android emulators are considered test devices
+    );
+    myBanner = BannerAd(
+      adUnitId: 'ca-app-pub-8093789261096390/7459574110',
+      size: AdSize.smartBanner,
+      targetingInfo: targetingInfo,
+      listener: (MobileAdEvent event) {
+        print("BannerAd event is $event");
+      },
+    );
+
     super.initState();
     for (var i = 1; i < int.parse(widget.numOfQuestions) + 1; i++) {
       ans = [];
@@ -91,6 +112,7 @@ class _QuizScreenState extends State<QuizScreen> {
           score++;
         }
       }
+      myBanner.dispose();
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -112,6 +134,12 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    myBanner
+      ..load()
+      ..show(
+        anchorType: AnchorType.bottom,
+      );
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);

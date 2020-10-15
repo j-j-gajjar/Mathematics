@@ -8,6 +8,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:path_provider/path_provider.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 class QuestionScreen extends StatefulWidget {
   final IconData icon;
@@ -21,26 +22,47 @@ class QuestionScreen extends StatefulWidget {
 
 class _QuestionScreenState extends State<QuestionScreen> {
   final _formKey = GlobalKey<FormState>();
-
   final TextEditingController _ques = TextEditingController();
-
   final TextEditingController _range1 = TextEditingController();
-
   final TextEditingController _range2 = TextEditingController();
-
   bool isLoading = false;
-
   List<dynamic> totalQueseion = [];
-
   List<List<dynamic>> answerBank = [];
-
   List<List<dynamic>> questionBank = [];
-
   List<dynamic> totalQueseionAnswer = [];
-
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  InterstitialAd myInterstitial;
+  MobileAdTargetingInfo targetingInfo;
+  @override
+  void initState() {
+    targetingInfo = MobileAdTargetingInfo(
+      keywords: <String>['maths', 'education', 'school', 'college', 'study'],
+      contentUrl: 'https://flutter.io',
+      birthday: DateTime.now(),
+      childDirected: false,
+      designedForFamilies: false,
+      gender: MobileAdGender.unknown,
+      testDevices: <String>[], // Android emulators are considered test devices
+    );
+    myInterstitial = InterstitialAd(
+      adUnitId: "ca-app-pub-8093789261096390/8369331109",
+      targetingInfo: targetingInfo,
+      listener: (MobileAdEvent event) {
+        print("InterstitialAd event is $event");
+      },
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    myInterstitial
+      ..load()
+      ..show(
+        anchorType: AnchorType.bottom,
+        anchorOffset: 0.0,
+        horizontalCenterOffset: 0.0,
+      );
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.pinkAccent,

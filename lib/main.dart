@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mathamatics/FirstPage.dart';
 
-//ca-app-pub-8093789261096390~8123462713
-
 void main() {
   runApp(MyApp());
 }

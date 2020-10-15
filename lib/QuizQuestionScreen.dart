@@ -1,12 +1,18 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:mathamatics/QuizScreen.dart';
 
-class QuizQuestionScreen extends StatelessWidget {
+class QuizQuestionScreen extends StatefulWidget {
   final IconData icon;
   final operator;
 
   QuizQuestionScreen({Key key, this.icon, this.operator}) : super(key: key);
 
+  @override
+  _QuizQuestionScreenState createState() => _QuizQuestionScreenState();
+}
+
+class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _ques = TextEditingController();
@@ -14,9 +20,38 @@ class QuizQuestionScreen extends StatelessWidget {
   final TextEditingController _range1 = TextEditingController();
 
   final TextEditingController _range2 = TextEditingController();
+  InterstitialAd myInterstitial;
+  MobileAdTargetingInfo targetingInfo;
+  @override
+  void initState() {
+    targetingInfo = MobileAdTargetingInfo(
+      keywords: <String>['maths', 'education', 'school', 'college', 'study'],
+      contentUrl: 'https://flutter.io',
+      birthday: DateTime.now(),
+      childDirected: false,
+      designedForFamilies: false,
+      gender: MobileAdGender.unknown,
+      testDevices: <String>[], // Android emulators are considered test devices
+    );
+    myInterstitial = InterstitialAd(
+      adUnitId: "ca-app-pub-8093789261096390/8369331109",
+      targetingInfo: targetingInfo,
+      listener: (MobileAdEvent event) {
+        print("InterstitialAd event is $event");
+      },
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    myInterstitial
+      ..load()
+      ..show(
+        anchorType: AnchorType.bottom,
+        anchorOffset: 0.0,
+        horizontalCenterOffset: 0.0,
+      );
     return Scaffold(
       backgroundColor: Colors.pinkAccent,
       appBar: AppBar(
@@ -47,9 +82,9 @@ class QuizQuestionScreen extends StatelessWidget {
                 height: 40,
               ),
               Hero(
-                tag: icon,
+                tag: widget.icon,
                 child: Icon(
-                  icon,
+                  widget.icon,
                   size: 70,
                   color: Colors.yellow,
                 ),
@@ -63,20 +98,20 @@ class QuizQuestionScreen extends StatelessWidget {
                   children: [
                     MainScreenCard(
                       ques: _ques,
-                      icon: icon,
+                      icon: widget.icon,
                       max: 3,
                       hint: "How Many Question",
                       maxValue: 100,
                     ),
                     MainScreenCard(
                       ques: _range1,
-                      icon: icon,
+                      icon: widget.icon,
                       max: 5,
                       hint: "First Value Range",
                     ),
                     MainScreenCard(
                       ques: _range2,
-                      icon: icon,
+                      icon: widget.icon,
                       max: 5,
                       hint: "Second Value Range",
                     ),
@@ -93,7 +128,7 @@ class QuizQuestionScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => QuizScreen(
-                          oprator: operator,
+                          oprator: widget.operator,
                           numOfQuestions: _ques.text,
                           range1: _range1.text,
                           range2: _range2.text,
