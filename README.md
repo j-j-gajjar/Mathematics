@@ -1,6 +1,6 @@
 # Mathematics flutter
 
-* Addition / Substitution / Multiplication / Division 
+* Addition / Subtraction / Multiplication / Division 
 * Generate MCQ PDF / Question PDF : With Answer
 * Quiz
 * Admob Ads
