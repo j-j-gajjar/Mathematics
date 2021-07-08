@@ -6,7 +6,7 @@
 * Admob Ads
 * Web Support
 * PWA support for Desktop
-* 
+
 <hr/>
 <h2><a href='https://mathamatics-7ffdd.web.app/'>Example Website</a></h2>
 
