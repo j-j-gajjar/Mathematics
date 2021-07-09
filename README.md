@@ -3,7 +3,6 @@
 * Addition / Subtraction / Multiplication / Division 
 * Generate MCQ PDF / Question PDF : With Answer
 * Quiz
-* Admob Ads
 * Web Support
 * PWA support for Desktop
 
