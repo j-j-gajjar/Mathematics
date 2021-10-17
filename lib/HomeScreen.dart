@@ -16,9 +16,22 @@ class HomeScreen extends StatelessWidget {
               physics: ScrollPhysics(parent: ScrollPhysics()),
               child: Column(
                 children: [
-                  DisplayButton(text: "Generate PDF", function: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AskOperator(isQuiz: false)))),
-                  SizedBox(height: (MediaQuery.of(context).size.height * 20) / 816),
-                  DisplayButton(text: "Quiz", function: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AskOperator(isQuiz: true)))),
+                  DisplayButton(
+                      text: "Generate PDF",
+                      function: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  AskOperator(isQuiz: false)))),
+                  SizedBox(
+                      height: (MediaQuery.of(context).size.height * 20) / 816),
+                  DisplayButton(
+                      text: "Quiz",
+                      function: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  AskOperator(isQuiz: true)))),
                 ],
               ),
             ),

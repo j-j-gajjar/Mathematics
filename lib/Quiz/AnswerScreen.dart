@@ -18,16 +18,28 @@ class AnswerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double percent = score / maxScore * 100;
     return Scaffold(
       backgroundColor: Colors.pinkAccent,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("YOUR SCORE IS ${score.toString()}",
-                style: TextStyle(fontSize: 25, color: Colors.yellow)),
-            Text("OUT OF ${maxScore.toString()}",
-                style: TextStyle(fontSize: 20, color: Colors.yellow)),
+            Column(
+              children: [
+                Text("YOUR SCORE IS ${score.toString()}",
+                    style: TextStyle(fontSize: 25, color: Colors.yellow)),
+                Text("OUT OF ${maxScore.toString()}",
+                    style: TextStyle(fontSize: 20, color: Colors.yellow)),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 15, 0, 40),
+              child: Text(
+                '${percent.toStringAsPrecision(4)} %',
+                style: TextStyle(color: Colors.yellow, fontSize: 45),
+              ),
+            ),
             MaterialButton(
               onPressed: () => Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => HomeScreen())),
