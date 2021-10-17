@@ -40,22 +40,35 @@ class AnswerScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.yellow, fontSize: 45),
               ),
             ),
-            MaterialButton(
-              onPressed: () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => HomeScreen())),
-              child:
-                  Text("Go To Home ->", style: TextStyle(color: Colors.white)),
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.yellow, width: 2),
+                  borderRadius: BorderRadius.circular(5)),
+              child: MaterialButton(
+                onPressed: () => Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen())),
+                child: Text("Go To Home ->",
+                    style: TextStyle(color: Colors.white)),
+              ),
             ),
-            MaterialButton(
-              onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => UserAnswerScreen(
-                          answers: answers,
-                          qustions: qustions,
-                          userAnswer: userAnswer))),
-              child: Text("Check Your Answer",
-                  style: TextStyle(color: Colors.white)),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.yellow, width: 2),
+                  borderRadius: BorderRadius.circular(5)),
+              child: MaterialButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UserAnswerScreen(
+                            answers: answers,
+                            qustions: qustions,
+                            userAnswer: userAnswer))),
+                child: Text("Check Your Answer",
+                    style: TextStyle(color: Colors.white)),
+              ),
             ),
           ],
         ),
