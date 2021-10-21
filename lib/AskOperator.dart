@@ -13,8 +13,17 @@ class AskOperator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.pinkAccent,
-        appBar: customAppBar(context),
+        backgroundColor: Colors.white,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60.0),
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: customAppBar(),
+          ),
+        ),
         body: SafeArea(
           child: Container(
             height: double.infinity,
@@ -33,7 +42,8 @@ class AskOperator extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) =>
                                     isQuiz ? QuizQuestionScreen(icon: FontAwesomeIcons.plus, operator: "sum") : PdfGenerationScreen(icon: FontAwesomeIcons.plus, operator: "sum"),
-                              )),
+                              )
+                          ),
                         ),
                         ButtonIcon(
                           icon: FontAwesomeIcons.minus,
@@ -42,7 +52,7 @@ class AskOperator extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) => isQuiz
                                     ? QuizQuestionScreen(icon: FontAwesomeIcons.minus, operator: "minus")
-                                    : PdfGenerationScreen(icon: FontAwesomeIcons.minus, operator: "sum"),
+                                    : PdfGenerationScreen(icon: FontAwesomeIcons.minus, operator: "minus"),
                               )),
                         ),
                       ],

@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mathamatics/Quiz/AnswerScreen.dart';
@@ -10,9 +10,11 @@ class QuizScreen extends StatefulWidget {
   final String oprator;
   final String numOfQuestions;
   final String range1;
+  final duration;
+
   final String range2;
 
-  QuizScreen({Key key, this.oprator, this.numOfQuestions = "5", this.range1 = "5", this.range2 = "5"});
+  QuizScreen({Key key, this.duration,this.oprator="sum", this.numOfQuestions = "5", this.range1 = "5", this.range2 = "5"});
 
   @override
   _QuizScreenState createState() => _QuizScreenState();
@@ -21,12 +23,13 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   List qustions = [];
   List answers = [];
+  bool isMarked=false;
   List<List<dynamic>> mcq = [];
   List userAnswer = [];
   var ansData;
   List<dynamic> ans = [];
   var j = 0;
-  @override
+  CountDownController _controller = CountDownController();
   void initState() {
     super.initState();
     for (var i = 1; i < int.parse(widget.numOfQuestions) + 1; i++) {
@@ -95,37 +98,97 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
       );
     } else {
-      setState(() => j++);
+      print("called");
+      setState(() {
+        ++j;
+        isMarked=false;
+      });
+      _controller.restart(duration: widget.duration);
     }
   }
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return Scaffold(
-      backgroundColor: Colors.pinkAccent,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(qustions[j].toString(), style: TextStyle(color: Colors.yellow, fontSize: 45, fontWeight: FontWeight.bold)),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                GestureDetector(onTap: () => _changeQuestion(mcq[j][0].toString()), child: QuizButtonIcon(option: mcq[j][0].toString())),
-                GestureDetector(onTap: () => _changeQuestion(mcq[j][1].toString()), child: QuizButtonIcon(option: mcq[j][1].toString())),
-              ],
+      backgroundColor: Colors.white,
+      body: LayoutBuilder(
+        builder: (context, constraint) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraint.maxHeight),
+              child: IntrinsicHeight(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularCountDownTimer(
+                        duration: widget.duration,
+                        initialDuration: 0,
+                        controller: _controller,
+                        width:MediaQuery.of(context).size.width>500?MediaQuery
+                            .of(context)
+                            .size
+                            .width / 10:MediaQuery
+                            .of(context)
+                            .size
+                            .width /6,
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height / 2,
+                        ringColor: Colors.grey[300],
+                        ringGradient: null,
+                        fillColor: Color(0XFF1ea366),
+                        backgroundColor: Colors.white,
+                        strokeWidth: 20.0,
+                        strokeCap: StrokeCap.butt,
+                        textStyle: TextStyle(
+                            fontSize: 33.0,
+                            color: Color(0XFF1ea366),
+                            fontWeight: FontWeight.bold),
+                        textFormat: CountdownTextFormat.SS,
+                        isTimerTextShown: true,
+                        isReverse: true,
+                        autoStart: true,
+                        onStart: () {},
+                        onComplete: () {
+                          if (!isMarked) {
+                            _changeQuestion("TimeOut");
+                          }
+                        }
+                    ),
+                    Text(qustions[j].toString(), style: TextStyle(
+                        color: Color(0XFF1ea366),
+                      fontSize:    MediaQuery.of(context).size.width>500?45:20,
+                        fontWeight: FontWeight.bold)),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        GestureDetector(onTap: () {
+                          _changeQuestion(mcq[j][0].toString());
+                        }, child: QuizButtonIcon(option: mcq[j][0].toString())),
+                        GestureDetector(onTap: () {
+                          _changeQuestion(mcq[j][1].toString());
+                        }, child: QuizButtonIcon(option: mcq[j][1].toString())),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        GestureDetector(onTap: () {
+                          _changeQuestion(mcq[j][2].toString());
+                        }, child: QuizButtonIcon(option: mcq[j][2].toString())),
+                        GestureDetector(onTap: () {
+                          _changeQuestion(mcq[j][3].toString());
+                        }, child: QuizButtonIcon(option: mcq[j][3].toString())),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                GestureDetector(onTap: () => _changeQuestion(mcq[j][2].toString()), child: QuizButtonIcon(option: mcq[j][2].toString())),
-                GestureDetector(onTap: () => _changeQuestion(mcq[j][3].toString()), child: QuizButtonIcon(option: mcq[j][3].toString())),
-              ],
-            ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
