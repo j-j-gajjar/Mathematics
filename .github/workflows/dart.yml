@@ -22,19 +22,10 @@ jobs:
           git init
           git config --global user.email gajjarjay52@gmail.com
           git config --global user.name j-j-gajjar
-      - name: Push
-        uses: j-j-gajjar/Mathematics@master
-        env:
-          REPO: self
-          BRANCH: gh-pages # The branch name where you want to push the assets
-          #FOLDER: build # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.commit_secret }} # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
-          
-       #   git status
-       #   git remote -v
-       #   git remote add origin https://${{secrets.commit_secret}}@github.com/j-j-gajjar/Mathematics.git
-       #   git checkout -b gh-pages
-        #  git add --all
-       #   git commit -m "update"
-       #   git push origin gh-pages -f
+          git status
+          git remote -v
+          git remote add origin https://${{secrets.commit_secret}}@github.com/j-j-gajjar/Mathematics.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f
