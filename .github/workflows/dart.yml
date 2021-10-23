@@ -24,7 +24,7 @@ jobs:
           git config --global user.name j-j-gajjar
           git status
           git remote -v
-          git remote add origin https://${{secrets.commit_secret}}@github.com/j-j-gajjar/Mathematics.git
+          git remote add origin https://j-j-gajjar:${{secrets.commit_secret}}@github.com/j-j-gajjar/Mathematics.git
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
