@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.0.5'
+          channel: 'dev'
       - run: flutter pub get
       - run: flutter build web
       - run: |
