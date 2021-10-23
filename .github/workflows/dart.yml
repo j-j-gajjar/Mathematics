@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-            lfs: true
-            token: ${{secrets.commit_secret}}
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.0.5'
@@ -21,6 +18,7 @@ jobs:
       - run: flutter build web
       - run: |
           cd build/web
+          perl -pi -e 's|<base href="/"/>|<base href="https://jaygajjar.ml/Mathematics"/>|' index.html
           git init
           git config --global user.email gajjarjay52@gmail.com
           git config --global user.name j-j-gajjar
