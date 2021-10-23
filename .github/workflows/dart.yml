@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+            lfs: true
+            token: ${{secrets.commit_secret}}
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.0.5'
