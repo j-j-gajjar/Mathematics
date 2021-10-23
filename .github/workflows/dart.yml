@@ -10,13 +10,12 @@ jobs:
       my_secret: ${{secrets.commit_secret}}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
         with:
-          channel: 'stable'
-      - run: flutter config --enable-web
+          flutter-version: '2.0.5'
       - run: flutter pub get
-      - run: flutter build web --release
+      - run: flutter build web
       - run: |
           cd build/web
           git init
