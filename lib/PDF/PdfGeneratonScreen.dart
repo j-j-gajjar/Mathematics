@@ -239,7 +239,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                                     : index == 2
                                         ? 'C'
                                         : 'D';
-                            totalQueseionMCQ.add("A) ${ans[0]}\nB) ${ans[1]}\nC) ${ans[2]}\nD) ${ans[3]}\n");
+                           totalQueseionMCQ.add("A) ${ans[0]} O B) ${ans[1]} O C) ${ans[2]} O D) ${ans[3]} O ");
                             totalQueseionAnswer.add("$i] $char");
                             ans = [];
                           } else if (widget.operator == "minus") {
@@ -264,7 +264,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                                     : index == 2
                                         ? 'C'
                                         : 'D';
-                            totalQueseionMCQ.add("A) ${ans[0]}\nB) ${ans[1]}\nC) ${ans[2]}\nD) ${ans[3]}\n");
+                           totalQueseionMCQ.add("A) ${ans[0]} O B) ${ans[1]} O C) ${ans[2]} O D) ${ans[3]} O ");
                             totalQueseionAnswer.add("$i] $char");
                             ans = [];
                           } else if (widget.operator == "multification") {
@@ -289,7 +289,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                                     : index == 2
                                         ? 'C'
                                         : 'D';
-                            totalQueseionMCQ.add("A) ${ans[0]}\nB) ${ans[1]}\nC) ${ans[2]}\nD) ${ans[3]}\n");
+                           totalQueseionMCQ.add("A) ${ans[0]} O B) ${ans[1]} O C) ${ans[2]} O D) ${ans[3]} O ");
                             totalQueseionAnswer.add("$i] $char");
                             ans = [];
                           } else {
@@ -314,7 +314,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                                     : index == 2
                                         ? 'C'
                                         : 'D';
-                            totalQueseionMCQ.add("A) ${ans[0]}\nB) ${ans[1]}\nC) ${ans[2]}\nD) ${ans[3]}\n");
+                           totalQueseionMCQ.add("A) ${ans[0]} O B) ${ans[1]} O C) ${ans[2]} O D) ${ans[3]} O ");
                             totalQueseionAnswer.add("$i] $char");
                             ans = [];
                           }
