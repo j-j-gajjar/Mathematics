@@ -30,13 +30,16 @@ class MainScreenCard extends StatelessWidget {
           }
           return null;
         },
-        style: TextStyle(color: Colors.yellow, fontSize: 20),
+        style: TextStyle(color: Colors.black, fontSize: 20),
         decoration: InputDecoration(
-          errorStyle: TextStyle(color: Colors.white),
+          errorStyle: TextStyle(color: Colors.red),
           errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3), borderRadius: BorderRadius.circular(16)),
           labelText: lable,
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Color(0XFF1ea366), width: 3), borderRadius: BorderRadius.circular(16),
+          ),
           prefixIcon: Icon(icon),
-          hintStyle: TextStyle(color: Colors.white),
+          hintStyle: TextStyle(color: Colors.black),
           hintText: hint,
           contentPadding: EdgeInsets.all(15),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
