@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mathamatics/HomeScreen.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -9,7 +8,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mathematics',
-      theme: ThemeData(primarySwatch: Colors.yellow, visualDensity: VisualDensity.adaptivePlatformDensity),
+      theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
       home: HomeScreen(),
     );
   }
