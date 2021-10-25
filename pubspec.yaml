@@ -31,10 +31,12 @@ dependencies:
   font_awesome_flutter: any
   pdf: any
   path_provider: any
-  flutter_full_pdf_viewer: ^1.0.6
-  printing: ^3.5.0
+  syncfusion_flutter_pdfviewer: ^19.3.46-beta
+  syncfusion_flutter_pdfviewer_web: ^19.3.46-beta
+  printing:
   modal_progress_hud: ^0.1.3
   universal_html: ^1.2.3
+  circular_countdown_timer: ^0.2.0
 
 
 
@@ -54,8 +56,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
