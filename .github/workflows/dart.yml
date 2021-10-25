@@ -20,11 +20,11 @@ jobs:
           cd build/web                                
           perl -pi -e 's|<base href="/"/>|<base href="https://jaygajjar.ml/Mathematics/"/>|' index.html
           git init
-          git config --global user.email "gajjarjay52@gmail.com"
-          git config --global user.name "j-j-gajjar"
+          git config --global user.email "djsmk123@gmail.com"
+          git config --global user.name "djsmk123"
           git status
           git remote -v
-          git config remote.origin.url "https://j-j-gajjar:${{secrets.commit_secret}}@github.com/j-j-gajjar/Mathematics.git"
+          git config remote.origin.url "https://djsmk123:${{secrets.commit_secret}}@github.com/djsmk123/Mathematics.git"
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
