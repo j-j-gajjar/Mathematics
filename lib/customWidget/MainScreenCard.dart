@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MainScreenCard extends StatelessWidget {
-  const MainScreenCard({Key key, @required TextEditingController ques, @required this.icon, this.lable, this.max, this.maxValue = 999999, this.hint})
-      : _ques = ques,
-        super(key: key);
+  const MainScreenCard({
+    required TextEditingController ques,
+    required this.icon,
+    required this.lable,
+    required this.max,
+    this.maxValue = 999999,
+    required this.hint,
+  }) : _ques = ques;
 
   final TextEditingController _ques;
   final IconData icon;
@@ -21,7 +26,7 @@ class MainScreenCard extends StatelessWidget {
         controller: _ques,
         keyboardType: TextInputType.number,
         validator: (val) {
-          if (val.isEmpty) {
+          if (val!.isEmpty) {
             return "Please input something";
           } else if (int.parse(val) < 2) {
             return "Value must be >3";
@@ -36,7 +41,8 @@ class MainScreenCard extends StatelessWidget {
           errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 3), borderRadius: BorderRadius.circular(16)),
           labelText: lable,
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0XFF1ea366), width: 3), borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide(color: Color(0XFF1ea366), width: 3),
+            borderRadius: BorderRadius.circular(16),
           ),
           prefixIcon: Icon(icon),
           hintStyle: TextStyle(color: Colors.black),

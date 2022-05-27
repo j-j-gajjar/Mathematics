@@ -1,4 +1,4 @@
-package clustersofttech.xyz
+package com.jjg.mathamatics
 
 import io.flutter.embedding.android.FlutterActivity
 

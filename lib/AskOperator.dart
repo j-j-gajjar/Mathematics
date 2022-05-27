@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mathamatics/PDF/PdfGeneratonScreen.dart';
@@ -9,7 +8,7 @@ import 'package:mathamatics/customWidget/customWidgetMethods.dart';
 class AskOperator extends StatelessWidget {
   final isQuiz;
 
-  const AskOperator({Key key, this.isQuiz}) : super(key: key);
+  const AskOperator({this.isQuiz});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +39,10 @@ class AskOperator extends StatelessWidget {
                           function: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    isQuiz ? QuizQuestionScreen(icon: FontAwesomeIcons.plus, operator: "sum") : PdfGenerationScreen(icon: FontAwesomeIcons.plus, operator: "sum"),
-                              )
-                          ),
+                                builder: (context) => isQuiz
+                                    ? QuizQuestionScreen(icon: FontAwesomeIcons.plus, operator: "sum")
+                                    : PdfGenerationScreen(icon: FontAwesomeIcons.plus, operator: "sum"),
+                              )),
                         ),
                         ButtonIcon(
                           icon: FontAwesomeIcons.minus,
@@ -62,13 +61,13 @@ class AskOperator extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         ButtonIcon(
-                          icon: FontAwesomeIcons.times,
+                          icon: FontAwesomeIcons.xmark,
                           function: () => Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => isQuiz
-                                    ? QuizQuestionScreen(icon: FontAwesomeIcons.times, operator: "multification")
-                                    : PdfGenerationScreen(icon: FontAwesomeIcons.times, operator: "multification"),
+                                    ? QuizQuestionScreen(icon: FontAwesomeIcons.xmark, operator: "multification")
+                                    : PdfGenerationScreen(icon: FontAwesomeIcons.xmark, operator: "multification"),
                               )),
                         ),
                         ButtonIcon(
