@@ -1,4 +1,4 @@
-package com.jjg.mathamatics
+package com.example.mathematics
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mathamatics/PDF/PdfGeneratonScreen.dart';
-import 'package:mathamatics/Quiz/QuizQuestionScreen.dart';
-import 'package:mathamatics/customWidget/ButtonIcon.dart';
-import 'package:mathamatics/customWidget/customWidgetMethods.dart';
+import 'PDF/PdfGeneratonScreen.dart';
+import 'Quiz/QuizQuestionScreen.dart';
+import 'customWidget/ButtonIcon.dart';
+import 'customWidget/customWidgetMethods.dart';
 
 class AskOperator extends StatelessWidget {
-  final isQuiz;
-
-  const AskOperator({this.isQuiz});
+  const AskOperator({super.key, required this.isQuiz});
+  final bool isQuiz;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,15 +19,15 @@ class AskOperator extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
             ),
-            child: customAppBar(),
+            child: const CustomAppBar(),
           ),
         ),
         body: SafeArea(
-          child: Container(
+          child: SizedBox(
             height: double.infinity,
             child: Center(
               child: SingleChildScrollView(
-                physics: ScrollPhysics(parent: ScrollPhysics()),
+                physics: const ScrollPhysics(parent: ScrollPhysics()),
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -40,8 +39,13 @@ class AskOperator extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => isQuiz
-                                    ? QuizQuestionScreen(icon: FontAwesomeIcons.plus, operator: "sum")
-                                    : PdfGenerationScreen(icon: FontAwesomeIcons.plus, operator: "sum"),
+                                    ? const QuizQuestionScreen(
+                                        icon: FontAwesomeIcons.plus,
+                                      )
+                                    : const PdfGenerationScreen(
+                                        icon: FontAwesomeIcons.plus,
+                                        operator: 'sum',
+                                      ),
                               )),
                         ),
                         ButtonIcon(
@@ -50,13 +54,19 @@ class AskOperator extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => isQuiz
-                                    ? QuizQuestionScreen(icon: FontAwesomeIcons.minus, operator: "minus")
-                                    : PdfGenerationScreen(icon: FontAwesomeIcons.minus, operator: "minus"),
+                                    ? const QuizQuestionScreen(
+                                        icon: FontAwesomeIcons.minus,
+                                        operator: 'minus',
+                                      )
+                                    : const PdfGenerationScreen(
+                                        icon: FontAwesomeIcons.minus,
+                                        operator: 'minus',
+                                      ),
                               )),
                         ),
                       ],
                     ),
-                    SizedBox(height: 60),
+                    const SizedBox(height: 60),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -66,8 +76,12 @@ class AskOperator extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => isQuiz
-                                    ? QuizQuestionScreen(icon: FontAwesomeIcons.xmark, operator: "multification")
-                                    : PdfGenerationScreen(icon: FontAwesomeIcons.xmark, operator: "multification"),
+                                    ? const QuizQuestionScreen(
+                                        icon: FontAwesomeIcons.xmark,
+                                        operator: 'multiplication')
+                                    : const PdfGenerationScreen(
+                                        icon: FontAwesomeIcons.xmark,
+                                        operator: 'multiplication'),
                               )),
                         ),
                         ButtonIcon(
@@ -76,8 +90,14 @@ class AskOperator extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => isQuiz
-                                    ? QuizQuestionScreen(icon: FontAwesomeIcons.divide, operator: "divition")
-                                    : PdfGenerationScreen(icon: FontAwesomeIcons.divide, operator: "divition"),
+                                    ? const QuizQuestionScreen(
+                                        icon: FontAwesomeIcons.divide,
+                                        operator: 'division',
+                                      )
+                                    : const PdfGenerationScreen(
+                                        icon: FontAwesomeIcons.divide,
+                                        operator: 'division',
+                                      ),
                               )),
                         ),
                       ],

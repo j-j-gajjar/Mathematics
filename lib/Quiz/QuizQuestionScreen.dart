@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mathamatics/Quiz/QuizScreen.dart';
-import 'package:mathamatics/customWidget/MainScreenCard.dart';
-import 'package:mathamatics/customWidget/customWidgetMethods.dart';
+
+import '../customWidget/MainScreenCard.dart';
+import '../customWidget/customWidgetMethods.dart';
+import '../utils/colorConst.dart';
+import 'QuizScreen.dart';
 
 class QuizQuestionScreen extends StatefulWidget {
+  const QuizQuestionScreen({
+    super.key,
+    this.icon = Icons.add,
+    this.operator = 'sum',
+  });
   final IconData icon;
-  final operator;
-
-  QuizQuestionScreen({this.icon = Icons.add, this.operator = "sum"});
+  final String operator;
 
   @override
   _QuizQuestionScreenState createState() => _QuizQuestionScreenState();
@@ -34,42 +39,63 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
           ),
-          child: customAppBar(),
+          child: const CustomAppBar(),
         ),
       ),
       body: Center(
         child: Container(
           height: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: SingleChildScrollView(
-            physics: ScrollPhysics(parent: ScrollPhysics()),
+            physics: const ScrollPhysics(parent: ScrollPhysics()),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 40),
-                Hero(tag: widget.icon, child: Icon(widget.icon, size: 70, color: Color(0XFF1ea366))),
-                SizedBox(height: 30),
+                const SizedBox(height: 40),
+                Hero(
+                  tag: widget.icon,
+                  child: Icon(
+                    widget.icon,
+                    size: 70,
+                    color: baseColor,
+                  ),
+                ),
+                const SizedBox(height: 30),
                 Form(
                   key: _formKey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      MainScreenCard(ques: _ques, icon: widget.icon, max: 3, lable: "How Many Question", maxValue: 100, hint: '20'),
-                      MainScreenCard(ques: _range1, icon: widget.icon, max: 5, lable: "Start Value", hint: '20'),
-                      MainScreenCard(ques: _range2, icon: widget.icon, max: 5, lable: "End Value", hint: '55'),
+                      MainScreenCard(
+                          ques: _ques,
+                          icon: widget.icon,
+                          max: 3,
+                          label: 'How Many Question',
+                          maxValue: 100,
+                          hint: '20'),
+                      MainScreenCard(
+                          ques: _range1,
+                          icon: widget.icon,
+                          max: 5,
+                          label: 'Start Value',
+                          hint: '20'),
+                      MainScreenCard(
+                          ques: _range2,
+                          icon: widget.icon,
+                          max: 5,
+                          label: 'End Value',
+                          hint: '55'),
                     ],
                   ),
                 ),
                 SizedBox(
                   width: 200,
                   child: ExpansionTile(
-                    title: Text("Time"),
-                    childrenPadding: EdgeInsets.fromLTRB(30, 2, 30, 10),
-                    leading: Icon(Icons.watch_later_rounded),
-                    trailing: Text("${time.toString()}s"),
+                    title: const Text('Time'),
+                    childrenPadding: const EdgeInsets.fromLTRB(30, 2, 30, 10),
+                    leading: const Icon(Icons.watch_later_rounded),
+                    trailing: Text('${time.toString()}s'),
                     children: [
                       ListTile(
-                        title: Text("5s"),
+                        title: const Text('5s'),
                         onTap: () {
                           setState(() {
                             time = 5;
@@ -77,7 +103,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
                         },
                       ),
                       ListTile(
-                        title: Text("10s"),
+                        title: const Text('10s'),
                         onTap: () {
                           setState(() {
                             time = 10;
@@ -85,7 +111,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
                         },
                       ),
                       ListTile(
-                        title: Text("15s"),
+                        title: const Text('15s'),
                         onTap: () {
                           setState(() {
                             time = 15;
@@ -93,7 +119,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
                         },
                       ),
                       ListTile(
-                        title: Text("20s"),
+                        title: const Text('20s'),
                         onTap: () {
                           setState(() {
                             time = 20;
@@ -103,7 +129,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 MaterialButton(
@@ -113,17 +139,25 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => QuizScreen(
-                                oprator: widget.operator, numOfQuestions: _ques.text, range1: _range1.text, range2: _range2.text, duration: time)),
+                                operator: widget.operator,
+                                numOfQuestions: _ques.text,
+                                range1: _range1.text,
+                                range2: _range2.text,
+                                duration: time)),
                       );
                     }
                   },
                   elevation: 20,
-                  color: Color(0XFF1ea366),
-                  child: Padding(
+                  color: baseColor,
+                  child: const Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text("GENERATE QUIZ", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600))),
+                      child: Text('GENERATE QUIZ',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w600))),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
               ],
             ),
           ),

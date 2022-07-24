@@ -1,18 +1,26 @@
+import 'dart:developer';
 import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:pdf/pdf.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:universal_html/html.dart' as html;
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class PdfViewer extends StatefulWidget {
-  final pdfName;
+  const PdfViewer({
+    required this.pdfName,
+    this.path,
+    this.pdfSave,
+    super.key,
+    this.anchor,
+  });
+  final String pdfName;
   final path;
   final pdfSave;
   final anchor;
-  const PdfViewer({this.pdfName, this.path, this.pdfSave, this.anchor});
 
   @override
   _PdfViewerState createState() => _PdfViewerState();
@@ -28,17 +36,21 @@ class _PdfViewerState extends State<PdfViewer> {
           title: Text(
             widget.pdfName,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Colors.black, letterSpacing: 2, fontSize: 20),
+            style: const TextStyle(
+                color: Colors.black, letterSpacing: 2, fontSize: 20),
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.download_sharp),
+              icon: const Icon(Icons.download_sharp),
               onPressed: () {
                 if (!kIsWeb) {
                   try {
-                    Printing.layoutPdf(onLayout: (PdfPageFormat format) async => widget.pdfSave.save());
+                    Printing.layoutPdf(
+                      onLayout: (PdfPageFormat format) async =>
+                          widget.pdfSave.save() as Future<Uint8List>,
+                    );
                   } catch (e) {
-                    print(e);
+                    log(e.toString());
                   }
                 } else {
                   widget.anchor.click();
@@ -48,6 +60,8 @@ class _PdfViewerState extends State<PdfViewer> {
             )
           ],
         ),
-        body: kIsWeb ? SfPdfViewer.memory(widget.pdfSave) : SfPdfViewer.file(File(widget.path)));
+        body: kIsWeb
+            ? SfPdfViewer.memory(widget.pdfSave as Uint8List)
+            : SfPdfViewer.file(File(widget.path as String)));
   }
 }

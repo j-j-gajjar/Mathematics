@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mathamatics/customWidget/customWidgetMethods.dart';
+import '../customWidget/customWidgetMethods.dart';
+import '../utils/colorConst.dart';
 
 class UserAnswerScreen extends StatefulWidget {
-  final List qustions;
-  final List answers;
-  final List userAnswer;
-
   const UserAnswerScreen({
-    required this.qustions,
+    required this.questions,
     required this.answers,
     required this.userAnswer,
+    super.key,
   });
+  final List<dynamic> questions;
+  final List<dynamic> answers;
+  final List<dynamic> userAnswer;
 
   @override
   _UserAnswerScreenState createState() => _UserAnswerScreenState();
@@ -29,48 +30,60 @@ class _UserAnswerScreenState extends State<UserAnswerScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
           ),
-          child: customAppBar(),
+          child: const CustomAppBar(),
         ),
       ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 30),
-              Container(
-                width: MediaQuery.of(context).size.width > 700 ? 600 : double.infinity,
+              const SizedBox(height: 30),
+              SizedBox(
+                width: MediaQuery.of(context).size.width > 700
+                    ? 600
+                    : double.infinity,
                 child: ListView.builder(
                   shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   itemBuilder: (c, i) {
                     return Card(
-                      color: Color(0XFF1ea366),
+                      color: baseColor,
                       elevation: 10,
                       child: ListTile(
-                        leading: widget.userAnswer[i].toString() == widget.answers[i].toString()
-                            ? CircleAvatar(
+                        leading: widget.userAnswer[i].toString() ==
+                                widget.answers[i].toString()
+                            ? const CircleAvatar(
                                 backgroundColor: Colors.white,
                                 child: Icon(
                                   FontAwesomeIcons.check,
-                                  color: Color(0XFF1ea366),
+                                  color: baseColorLight,
                                 ))
-                            : CircleAvatar(
+                            : const CircleAvatar(
                                 backgroundColor: Colors.white,
                                 child: Icon(
                                   FontAwesomeIcons.xmark,
-                                  color: Colors.red[900],
-                                )),
-                        title: Text(widget.qustions[i].toString(), style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-                        subtitle: Text("Answer = ${widget.answers[i].toString()}", style: TextStyle(color: Colors.white54, fontSize: 15)),
-                        trailing: Text("${widget.userAnswer[i].toString()}", style: TextStyle(fontSize: 20, color: Colors.orangeAccent)),
+                                  color: redColorLight,
+                                ),
+                              ),
+                        title: Text(widget.questions[i].toString(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                        subtitle: Text(
+                            'Answer = ${widget.answers[i].toString()}',
+                            style: const TextStyle(
+                                color: Colors.white54, fontSize: 15)),
+                        trailing: Text(widget.userAnswer[i].toString(),
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.orangeAccent)),
                       ),
                     );
                   },
                   itemCount: widget.answers.length,
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
             ],
           ),
         ),

@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:mathamatics/HomeScreen.dart';
-import 'package:mathamatics/Quiz/UserAnswerScreen.dart';
-import 'package:mathamatics/customWidget/customWidgetMethods.dart';
+
+import '../HomeScreen.dart';
+import '../customWidget/customWidgetMethods.dart';
+import '../utils/colorConst.dart';
+import 'UserAnswerScreen.dart';
 
 class AnswerScreen extends StatelessWidget {
-  final score;
-  final maxScore;
-  final List qustions;
-  final List answers;
-  final List userAnswer;
-
-  const AnswerScreen({this.score, this.maxScore, required this.qustions, required this.answers, required this.userAnswer});
+  const AnswerScreen({
+    super.key,
+    required this.score,
+    required this.maxScore,
+    required this.questions,
+    required this.answers,
+    required this.userAnswer,
+  });
+  final int score;
+  final int maxScore;
+  final List<dynamic> questions;
+  final List<dynamic> answers;
+  final List<dynamic> userAnswer;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,7 @@ class AnswerScreen extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
           ),
-          child: customAppBar(),
+          child: const CustomAppBar(),
         ),
       ),
       backgroundColor: Colors.white,
@@ -30,48 +38,56 @@ class AnswerScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (score * 100 / maxScore > 75)
-              Image.asset("assets/congratulation.gif")
-            else if (score * 100 / maxScore > 40)
-              Image.asset("assets/nice-try.gif")
+            if (score * 100 / maxScore > 75 == true)
+              Image.asset('assets/congratulation.gif')
+            else if (score * 100 / maxScore > 40 == true)
+              Image.asset('assets/nice-try.gif')
             else
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 60, 0),
                 child: Image.asset(
-                  "assets/betterluck.png",
+                  'assets/betterluck.png',
                   width: 300,
                 ),
               ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text("YOUR SCROE IS ${score.toString()}",
-                style: TextStyle(
+            Text('YOUR SCORE IS ${score.toString()}',
+                style: const TextStyle(
                   fontSize: 25,
-                  color: Color(0XFF1ea366),
+                  color: baseColorLight,
                 )),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text("OUT OF ${maxScore.toString()}",
-                style: TextStyle(
+            Text('OUT OF ${maxScore.toString()}',
+                style: const TextStyle(
                   fontSize: 20,
                   color: Colors.black,
                 )),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             MaterialButton(
-              onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen())),
-              child: Text("Go To Home ->", style: TextStyle(color: Colors.blueAccent)),
+              onPressed: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen())),
+              child: const Text('Go To Home ->',
+                  style: TextStyle(color: Colors.blueAccent)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             MaterialButton(
               onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => UserAnswerScreen(answers: answers, qustions: qustions, userAnswer: userAnswer))),
-              child: Text("Check Your Answer", style: TextStyle(color: Colors.blueAccent)),
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => UserAnswerScreen(
+                          answers: answers,
+                          questions: questions,
+                          userAnswer: userAnswer))),
+              child: const Text('Check Your Answer',
+                  style: TextStyle(color: Colors.blueAccent)),
             ),
           ],
         ),

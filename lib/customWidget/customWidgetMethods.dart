@@ -1,48 +1,43 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/*PreferredSize customAppBar(BuildContext context) {
-  return PreferredSize(
-    preferredSize: const Size.fromHeight(60.0),
-    child: Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: AppBar(
-        leading: Icon(Icons.calculate_outlined,size: 50,),
-        title: Text("Mathematics ",style: TextStyle(
-            color: Colors.white,
-            fontSize: 30,
-            fontWeight: FontWeight.w500,
-            letterSpacing: 2
-        ),
-        ),
-        backgroundColor:  Color(0XFF1ea366),
-        elevation: 0,
-      ),
-    ),
-  );
-  */ /*AppBar(
-    leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back_ios, color: Colors.pink)),
-    title: Text("Mathematics", style: TextStyle(color: Colors.pink)),
-    centerTitle: true,
-    backgroundColor: Colors.yellow,
-    elevation: 0,
-  );*/ /*
-}*/
-class customAppBar extends StatelessWidget {
+import '../HomeScreen.dart';
+import '../utils/colorConst.dart';
+
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Icon(
-        Icons.calculate_outlined,
-        size: 50,
+      leading: IconButton(
+        icon: const Icon(
+          Icons.calculate_outlined,
+          size: 50,
+          color: Colors.white,
+        ),
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onPressed: () {
+          if (kIsWeb)
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomeScreen(),
+              ),
+              (route) => false,
+            );
+        },
       ),
-      title: Text(
-        "Mathematics ",
-        style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500, letterSpacing: 2),
+      title: const Text(
+        'Mathematics ',
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 2),
       ),
-      backgroundColor: Color(0XFF1ea366),
+      backgroundColor: baseColor,
       elevation: 0,
     );
   }

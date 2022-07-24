@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mathamatics/AskOperator.dart';
-import 'package:mathamatics/customWidget/DisplayButton.dart';
+import 'AskOperator.dart';
+import 'customWidget/DisplayButton.dart';
 
 import 'customWidget/customWidgetMethods.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*  backgroundColor: Colors.pinkAccent,
-      */
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
@@ -18,28 +18,44 @@ class HomeScreen extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
           ),
-          child: customAppBar(),
+          child: const CustomAppBar(),
         ),
       ),
       body: Container(
         height: double.infinity,
-        /* padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),*/
-        padding: EdgeInsets.fromLTRB(20, 10, 30, 10),
+        padding: const EdgeInsets.fromLTRB(20, 10, 30, 10),
         child: SingleChildScrollView(
-          physics: ScrollPhysics(parent: ScrollPhysics()),
+          physics: const ScrollPhysics(parent: ScrollPhysics()),
           child: Center(
             child: Column(
               children: [
-                Container(height: MediaQuery.of(context).size.height * 0.6, child: Image.asset("assets/HomeScreen.jpg")),
                 SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    child: Image.asset('assets/HomeScreen.jpg')),
+                const SizedBox(
                   height: 50,
                 ),
                 DisplayButton(
-                    text: "Generate PDF",
-                    function: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AskOperator(isQuiz: false)))),
-                SizedBox(height: (MediaQuery.of(context).size.height * 20) / 816),
+                  text: 'Generate PDF',
+                  function: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AskOperator(isQuiz: false),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: (MediaQuery.of(context).size.height * 20) / 816,
+                ),
                 DisplayButton(
-                    text: "Quiz", function: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AskOperator(isQuiz: true)))),
+                  text: 'Quiz',
+                  function: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AskOperator(isQuiz: true),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
