@@ -38,6 +38,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
   Uint8List? bytes;
 
   bool isLoading = false;
+
   List<dynamic> totalQuestion = [];
   List<List<dynamic>> answerBank = [];
   List<List<dynamic>> questionBank = [];
@@ -110,140 +111,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                   ),
                   const SizedBox(height: 30),
                   MaterialButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        setState(() {
-                          isLoading = !isLoading;
-                        });
-                        bool addMeInArray = false;
-                        questionBank
-                            .add(['Questions', 'Questions', 'Questions']);
-                        answerBank.add(['Answer', 'Answer', 'Answer']);
-                        for (var i = 1; i < int.parse(_ques.text) + 1; i++) {
-                          addMeInArray = false;
-                          final val1 =
-                              Random().nextInt(int.parse(_range1.text)) + 1;
-                          final val2 =
-                              Random().nextInt(int.parse(_range2.text)) + 1;
-                          if (widget.operator == 'sum') {
-                            totalQuestion
-                                .add('$i]  $val1  +  $val2 =  ______ ');
-                            totalQuestionAnswer
-                                .add('$i]  $val1  +  $val2 =  ${val1 + val2} ');
-                          } else if (widget.operator == 'minus') {
-                            totalQuestion
-                                .add('$i]  $val1  -  $val2 =  ______ ');
-                            totalQuestionAnswer
-                                .add('$i]  $val1  -  $val2 =  ${val1 - val2} ');
-                          } else if (widget.operator == 'multiplication') {
-                            totalQuestion
-                                .add('$i]  $val1  *  $val2 =  ______ ');
-                            totalQuestionAnswer
-                                .add('$i]  $val1  *  $val2 =  ${val1 * val2} ');
-                          } else {
-                            totalQuestion
-                                .add('$i]  $val1  /  $val2 =  ______ ');
-                            totalQuestionAnswer.add(
-                                '$i]  $val1  /  $val2 =  ${(val1 / val2).toStringAsFixed(2)} ');
-                          }
-                          if (i % 3 == 0) {
-                            addMeInArray = true;
-                            questionBank.add(totalQuestion);
-                            totalQuestion = [];
-                            answerBank.add(totalQuestionAnswer);
-                            totalQuestionAnswer = [];
-                          }
-                        }
-                        if (!addMeInArray) {
-                          addMeInArray = true;
-                          questionBank.add(totalQuestion);
-                          totalQuestion = [];
-                          answerBank.add(totalQuestionAnswer);
-                          totalQuestionAnswer = [];
-                        }
-
-                        final pdf = pw.Document();
-                        pdf.addPage(
-                          pw.MultiPage(
-                            build: (pw.Context context) => <pw.Widget>[
-                              pw.Header(level: 0, text: 'Questions'),
-                              pw.Table.fromTextArray(
-                                  context: context, data: questionBank),
-                              pw.Padding(padding: const pw.EdgeInsets.all(10))
-                            ],
-                          ),
-                        );
-                        pdf.addPage(
-                          pw.MultiPage(
-                            build: (pw.Context context) => <pw.Widget>[
-                              pw.Padding(padding: const pw.EdgeInsets.all(10)),
-                              pw.Header(text: 'Answer Sheet'),
-                              pw.Table.fromTextArray(
-                                  context: context, data: answerBank)
-                            ],
-                          ),
-                        );
-                        questionBank = [];
-                        answerBank = [];
-                        if (kIsWeb) {
-                          pdf.save().then((value) {
-                            setState(() {
-                              bytes = value;
-                            });
-                          });
-                          await Future.delayed(const Duration(seconds: 1));
-                          final blob = html.Blob(
-                            [bytes],
-                            'application${DateTime.now().millisecondsSinceEpoch}/pdf',
-                          );
-                          final url = html.Url.createObjectUrlFromBlob(blob);
-                          final anchor = html.document.createElement('a')
-                              as html.AnchorElement
-                            ..href = url
-                            ..style.display = 'none'
-                            ..download =
-                                'NoMcq__${DateTime.now().millisecondsSinceEpoch}.pdf';
-                          html.document.body!.children.add(anchor);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PdfViewer(
-                                pdfName:
-                                    'NoMcq__${DateTime.now().millisecondsSinceEpoch}.pdf',
-                                pdfSave: bytes,
-                                anchor: anchor,
-                              ),
-                            ),
-                          );
-                        } else {
-                          final String dir =
-                              (await getApplicationDocumentsDirectory()).path;
-                          final String fileName =
-                              'NoMcq__${DateTime.now().millisecondsSinceEpoch}.pdf';
-                          final String path = '$dir/$fileName';
-                          final File file = File(path);
-                          pdf.save().then((value) {
-                            setState(() {
-                              file.writeAsBytesSync(value);
-                            });
-                          });
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PdfViewer(
-                                      pdfName: fileName.toString(),
-                                      path: path,
-                                      pdfSave: pdf)));
-                          totalQuestion = [];
-                          answerBank = [];
-                          questionBank = [];
-                          totalQuestionAnswer = [];
-                        }
-                        setState(() {
-                          isLoading = !isLoading;
-                        });
-                      }
-                    },
+                    onPressed: () async => noMCQ(context),
                     elevation: 30,
                     color: baseColor,
                     child: const Padding(
@@ -256,251 +124,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                   ),
                   const SizedBox(height: 30),
                   MaterialButton(
-                    onPressed: () async {
-                      setState(() {
-                        isLoading = !isLoading;
-                      });
-                      if (_formKey.currentState!.validate()) {
-                        List<Object> ansData;
-                        List<dynamic> ans = [];
-                        bool addMeInArray = false;
-                        List<List<dynamic>> finalMcqPrint = [];
-                        List<List<dynamic>> finalMcqAnswerPrint = [];
-                        final List<dynamic> totalQuestionMCQ = [];
-                        finalMcqPrint.add(['Questors']);
-                        finalMcqAnswerPrint.add([
-                          'Answers',
-                        ]);
-                        for (var i = 1; i < int.parse(_ques.text) + 1; i++) {
-                          final val1 =
-                              Random().nextInt(int.parse(_range1.text)) + 1;
-                          final val2 =
-                              Random().nextInt(int.parse(_range2.text)) + 1;
-                          addMeInArray = false;
-                          if (widget.operator == 'sum') {
-                            totalQuestion.add('$i]      $val1  +  $val2 =  ? ');
-                            ansData = [
-                              val1 + val2,
-                              val1 + val2 + Random().nextInt(10) + 1,
-                              val1 + val2 - Random().nextInt(10) - 1,
-                              val1 + val2 + Random().nextInt(16) + 1,
-                            ];
-
-                            for (var j = 0; j < 4; j++) {
-                              final rNum =
-                                  Random().nextInt(ansData.length).round();
-                              ans.add(ansData[rNum]);
-                              ansData.removeAt(rNum);
-                            }
-                            final index = ans.indexOf(val1 + val2);
-                            final char = index == 0
-                                ? 'A'
-                                : index == 1
-                                    ? 'B'
-                                    : index == 2
-                                        ? 'C'
-                                        : 'D';
-                            totalQuestionMCQ.add(
-                                'A) ${ans[0]} O B) ${ans[1]} O C) ${ans[2]} O D) ${ans[3]} O ');
-                            totalQuestionAnswer.add('$i] $char');
-                            ans = [];
-                          } else if (widget.operator == 'minus') {
-                            totalQuestion.add('$i]      $val1  -  $val2 =  ? ');
-                            ansData = [
-                              val1 - val2,
-                              val1 - val2 + Random().nextInt(10) + 1,
-                              val1 - val2 - Random().nextInt(10) - 1,
-                              val1 - val2 + Random().nextInt(16) + 1,
-                            ];
-
-                            for (var j = 0; j < 4; j++) {
-                              final rNum =
-                                  Random().nextInt(ansData.length).round();
-                              ans.add(ansData[rNum]);
-                              ansData.removeAt(rNum);
-                            }
-                            final index = ans.indexOf(val1 - val2);
-                            final char = index == 0
-                                ? 'A'
-                                : index == 1
-                                    ? 'B'
-                                    : index == 2
-                                        ? 'C'
-                                        : 'D';
-                            totalQuestionMCQ.add(
-                                'A) ${ans[0]} O B) ${ans[1]} O C) ${ans[2]} O D) ${ans[3]} O ');
-                            totalQuestionAnswer.add('$i] $char');
-                            ans = [];
-                          } else if (widget.operator == 'multiplication') {
-                            totalQuestion.add('$i]      $val1  *  $val2 =  ? ');
-                            ansData = [
-                              val1 * val2,
-                              val1 * val2 + Random().nextInt(10) + 1,
-                              val1 * val2 - Random().nextInt(10) - 1,
-                              val1 * val2 + Random().nextInt(16) + 1,
-                            ];
-
-                            for (var j = 0; j < 4; j++) {
-                              final rNum =
-                                  Random().nextInt(ansData.length).round();
-                              ans.add(ansData[rNum]);
-                              ansData.removeAt(rNum);
-                            }
-                            final index = ans.indexOf(val1 * val2);
-                            final char = index == 0
-                                ? 'A'
-                                : index == 1
-                                    ? 'B'
-                                    : index == 2
-                                        ? 'C'
-                                        : 'D';
-                            totalQuestionMCQ.add(
-                                'A) ${ans[0]} O B) ${ans[1]} O C) ${ans[2]} O D) ${ans[3]} O ');
-                            totalQuestionAnswer.add('$i] $char');
-                            ans = [];
-                          } else {
-                            totalQuestion.add('$i]      $val1  /  $val2 =  ? ');
-                            ansData = [
-                              (val1 / val2).toStringAsFixed(2),
-                              (val1 / val2 + Random().nextInt(10) + 1)
-                                  .toStringAsFixed(2),
-                              (val1 / val2 - Random().nextInt(10) - 1)
-                                  .toStringAsFixed(2),
-                              (val1 / val2 + Random().nextInt(16) + 1)
-                                  .toStringAsFixed(2),
-                            ];
-
-                            for (var j = 0; j < 4; j++) {
-                              final rNum =
-                                  Random().nextInt(ansData.length).round();
-                              ans.add(ansData[rNum]);
-                              ansData.removeAt(rNum);
-                            }
-                            final index =
-                                ans.indexOf((val1 / val2).toStringAsFixed(2));
-                            final char = index == 0
-                                ? 'A'
-                                : index == 1
-                                    ? 'B'
-                                    : index == 2
-                                        ? 'C'
-                                        : 'D';
-                            totalQuestionMCQ.add(
-                                'A) ${ans[0]} O B) ${ans[1]} O C) ${ans[2]} O D) ${ans[3]} O ');
-                            totalQuestionAnswer.add('$i] $char');
-                            ans = [];
-                          }
-                          if (i % 7 == 0) {
-                            addMeInArray = true;
-
-                            finalMcqAnswerPrint.add(totalQuestionAnswer);
-                            totalQuestionAnswer = [];
-                          }
-                        }
-                        for (int i = 0; i < totalQuestion.length; i++) {
-                          finalMcqPrint.add([totalQuestion[i]]);
-                          finalMcqPrint.add([totalQuestionMCQ[i]]);
-                        }
-                        if (!addMeInArray) {
-                          addMeInArray = true;
-                          finalMcqAnswerPrint.add(totalQuestionAnswer);
-                          totalQuestionAnswer = [];
-                        }
-                        final pdf = pw.Document();
-                        try {
-                          pdf.addPage(
-                            pw.MultiPage(
-                              pageFormat: PdfPageFormat.a4,
-                              orientation: pw.PageOrientation.portrait,
-                              build: (pw.Context context) => <pw.Widget>[
-                                pw.Table.fromTextArray(
-                                    context: context, data: finalMcqPrint),
-                                pw.Padding(padding: const pw.EdgeInsets.all(10))
-                              ],
-                            ),
-                          );
-                          pdf.addPage(
-                            pw.MultiPage(
-                              build: (pw.Context context) => <pw.Widget>[
-                                pw.Padding(padding: const pw.EdgeInsets.all(5)),
-                                pw.Header(text: 'Answer Sheet'),
-                                pw.Table.fromTextArray(
-                                    context: context, data: finalMcqAnswerPrint)
-                              ],
-                            ),
-                          );
-                        } catch (e) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text('Button moved to separate widget'),
-                            duration: Duration(seconds: 3),
-                          ));
-                        }
-                        finalMcqAnswerPrint = [];
-                        finalMcqPrint = [];
-                        if (kIsWeb) {
-                          pdf.save().then((value) {
-                            setState(() {
-                              bytes = value;
-                            });
-                          });
-                          await Future.delayed(const Duration(seconds: 1));
-                          final blob = html.Blob([
-                            bytes
-                          ], 'application${DateTime.now().millisecondsSinceEpoch}/pdf');
-                          final url = html.Url.createObjectUrlFromBlob(blob);
-                          final anchor = html.document.createElement('a')
-                              as html.AnchorElement
-                            ..href = url
-                            ..style.display = 'none'
-                            ..download =
-                                'WithMcq__${DateTime.now().millisecondsSinceEpoch}.pdf';
-                          html.document.body!.children.add(anchor);
-                          /*  anchor.click();
-                          html.document.body.children.remove(anchor);
-                          html.Url.revokeObjectUrl(url);*/
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PdfViewer(
-                                pdfName:
-                                    'NoMcq__${DateTime.now().millisecondsSinceEpoch}.pdf',
-                                pdfSave: bytes,
-                                anchor: anchor,
-                              ),
-                            ),
-                          );
-                        } else {
-                          final String dir =
-                              (await getApplicationDocumentsDirectory()).path;
-
-                          final String fileName =
-                              'WithMcq__${DateTime.now().millisecondsSinceEpoch}.pdf';
-                          final String path = '$dir/$fileName';
-                          final file = File(path);
-
-                          pdf.save().then((value) {
-                            setState(() {
-                              file.writeAsBytesSync(value);
-                            });
-                          });
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PdfViewer(
-                                      pdfName: fileName.toString(),
-                                      path: path,
-                                      pdfSave: pdf)));
-                        }
-                        totalQuestion = [];
-                        answerBank = [];
-                        questionBank = [];
-                        totalQuestionAnswer = [];
-                      }
-                      setState(() {
-                        isLoading = !isLoading;
-                      });
-                    },
+                    onPressed: () async => withMCQ(context),
                     elevation: 30,
                     color: baseColor,
                     child: const Padding(
@@ -519,5 +143,335 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> showPDF(
+      pw.Document pdf, BuildContext context, String name) async {
+    // chack if the user is on web  or app
+    if (kIsWeb) {
+      pdf.save().then((value) {
+        setState(() {
+          bytes = value;
+        });
+      });
+      await Future.delayed(const Duration(seconds: 1));
+      final blob = html.Blob(
+        [bytes],
+        'application${DateTime.now().millisecondsSinceEpoch}/pdf',
+      );
+      final url = html.Url.createObjectUrlFromBlob(blob);
+      final anchor = html.document.createElement('a') as html.AnchorElement
+        ..href = url
+        ..style.display = 'none'
+        ..download = '$name${DateTime.now().millisecondsSinceEpoch}.pdf';
+      html.document.body!.children.add(anchor);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PdfViewer(
+            pdfName: '$name${DateTime.now().millisecondsSinceEpoch}.pdf',
+            pdfSave: bytes,
+            anchor: anchor,
+          ),
+        ),
+      );
+    } else {
+      final String dir = (await getApplicationDocumentsDirectory()).path;
+      final String fileName =
+          '$name${DateTime.now().millisecondsSinceEpoch}.pdf';
+      final String path = '$dir/$fileName';
+      final File file = File(path);
+      pdf.save().then((value) {
+        setState(() {
+          file.writeAsBytesSync(value);
+        });
+      });
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PdfViewer(
+                  pdfName: fileName.toString(), path: path, pdfSave: pdf)));
+      totalQuestion = [];
+      answerBank = [];
+      questionBank = [];
+      totalQuestionAnswer = [];
+    }
+  }
+
+  Future<void> withMCQ(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      // to show the Progress bar
+      setState(() {
+        isLoading = !isLoading;
+      });
+      final List<Object> ansData = [];
+      final List<dynamic> ans = [];
+      bool addMeInArray = false;
+      List<List<dynamic>> finalMcqPrint = [];
+      List<List<dynamic>> finalMcqAnswerPrint = [];
+      final List<dynamic> totalQuestionMCQ = [];
+      finalMcqPrint.add(['Questors']);
+      finalMcqAnswerPrint.add([
+        'Answers',
+      ]);
+
+      // generate the Questions and answers
+      addMeInArray = generateWithMCQQueAns(
+          addMeInArray, ansData, ans, totalQuestionMCQ, finalMcqAnswerPrint);
+
+      for (int i = 0; i < totalQuestion.length; i++) {
+        finalMcqPrint.add([totalQuestion[i]]);
+        finalMcqPrint.add([totalQuestionMCQ[i]]);
+      }
+
+      if (!addMeInArray) {
+        addMeInArray = true;
+        finalMcqAnswerPrint.add(totalQuestionAnswer);
+        totalQuestionAnswer = [];
+      }
+
+      // generate the pdf
+      final pdf =
+          generateWithMCQPDF(finalMcqPrint, finalMcqAnswerPrint, context);
+      finalMcqAnswerPrint = [];
+      finalMcqPrint = [];
+
+      // show the pdf
+      showPDF(pdf, context, 'WithMcq__');
+
+      totalQuestion = [];
+      answerBank = [];
+      questionBank = [];
+      totalQuestionAnswer = [];
+    }
+    setState(() {
+      isLoading = !isLoading;
+    });
+  }
+
+  bool generateWithMCQQueAns(
+      bool addMeInArray,
+      List<Object> ansData,
+      List<dynamic> ans,
+      List<dynamic> totalQuestionMCQ,
+      List<List<dynamic>> finalMcqAnswerPrint) {
+    for (var i = 1; i < int.parse(_ques.text) + 1; i++) {
+      final val1 = Random().nextInt(int.parse(_range1.text)) + 1;
+      final val2 = Random().nextInt(int.parse(_range2.text)) + 1;
+      addMeInArray = false;
+
+      // this is not optimal because we chack the oprator type every time
+      if (widget.operator == 'sum') {
+        totalQuestion.add('$i]      $val1  +  $val2 =  ? ');
+
+        // make choices;
+        ansData = [
+          val1 + val2,
+          val1 + val2 + Random().nextInt(10) + 1,
+          val1 + val2 - Random().nextInt(10) - 1,
+          val1 + val2 + Random().nextInt(16) + 1,
+        ];
+
+        final correctAnsValue = val1 + val2;
+
+        ans = dontKnowWhatToNameIt(
+            ansData, ans, correctAnsValue, totalQuestionMCQ, i);
+      } else if (widget.operator == 'minus') {
+        totalQuestion.add('$i]      $val1  -  $val2 =  ? ');
+        ansData = [
+          val1 - val2,
+          val1 - val2 + Random().nextInt(10) + 1,
+          val1 - val2 - Random().nextInt(10) - 1,
+          val1 - val2 + Random().nextInt(16) + 1,
+        ];
+
+        final correctAnsValue = val1 - val2;
+        ans = dontKnowWhatToNameIt(
+            ansData, ans, correctAnsValue, totalQuestionMCQ, i);
+      } else if (widget.operator == 'multiplication') {
+        totalQuestion.add('$i]      $val1  *  $val2 =  ? ');
+        ansData = [
+          val1 * val2,
+          val1 * val2 + Random().nextInt(10) + 1,
+          val1 * val2 - Random().nextInt(10) - 1,
+          val1 * val2 + Random().nextInt(16) + 1,
+        ];
+
+        final correctAnsValue = val1 * val2;
+        ans = dontKnowWhatToNameIt(
+            ansData, ans, correctAnsValue, totalQuestionMCQ, i);
+      } else {
+        totalQuestion.add('$i]      $val1  /  $val2 =  ? ');
+        ansData = [
+          double.parse((val1 / val2).toStringAsFixed(2)),
+          double.parse(
+              (val1 / val2 + Random().nextInt(10) + 1).toStringAsFixed(2)),
+          double.parse(
+              (val1 / val2 - Random().nextInt(10) - 1).toStringAsFixed(2)),
+          double.parse(
+              (val1 / val2 + Random().nextInt(16) + 1).toStringAsFixed(2)),
+        ];
+        final correctAnsValue = double.parse((val1 / val2).toStringAsFixed(2));
+        ans = dontKnowWhatToNameIt(
+            ansData, ans, correctAnsValue, totalQuestionMCQ, i);
+      }
+      if (i % 7 == 0) {
+        addMeInArray = true;
+
+        finalMcqAnswerPrint.add(totalQuestionAnswer);
+        totalQuestionAnswer = [];
+      }
+    }
+    return addMeInArray;
+  }
+
+  List<dynamic> dontKnowWhatToNameIt(List<Object> ansData, List<dynamic> ans,
+      num correctAnsValue, List<dynamic> totalQuestionMCQ, int i) {
+    // randomize the order of questions
+    for (var j = 0; j < 4; j++) {
+      final rNum = Random().nextInt(ansData.length).round();
+      ans.add(ansData[rNum]);
+      ansData.removeAt(rNum);
+    }
+
+    // get the Char of correct answer
+    final choicesChar = ['A', 'B', 'C', 'D'];
+    final index = ans.indexOf(correctAnsValue);
+    final char = choicesChar[index];
+
+    totalQuestionMCQ
+        .add('A) ${ans[0]} O B) ${ans[1]} O C) ${ans[2]} O D) ${ans[3]} O ');
+    totalQuestionAnswer.add('$i] $char');
+    ans = [];
+    return ans;
+  }
+
+  pw.Document generateWithMCQPDF(List<List<dynamic>> finalMcqPrint,
+      List<List<dynamic>> finalMcqAnswerPrint, BuildContext context) {
+    final pdf = pw.Document();
+    try {
+      pdf.addPage(
+        pw.MultiPage(
+          pageFormat: PdfPageFormat.a4,
+          orientation: pw.PageOrientation.portrait,
+          build: (pw.Context context) => <pw.Widget>[
+            pw.Table.fromTextArray(context: context, data: finalMcqPrint),
+            pw.Padding(padding: const pw.EdgeInsets.all(10))
+          ],
+        ),
+      );
+      pdf.addPage(
+        pw.MultiPage(
+          build: (pw.Context context) => <pw.Widget>[
+            pw.Padding(padding: const pw.EdgeInsets.all(5)),
+            pw.Header(text: 'Answer Sheet'),
+            pw.Table.fromTextArray(context: context, data: finalMcqAnswerPrint)
+          ],
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Button moved to separate widget'),
+        duration: Duration(seconds: 3),
+      ));
+    }
+    return pdf;
+  }
+
+  Future<void> noMCQ(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        isLoading = !isLoading;
+      });
+
+      // this variable is used to trac tthe rows of the table
+      bool addMeInArray = false;
+
+      // Headers of the Table
+      questionBank.add(['Questions', 'Questions', 'Questions']);
+      answerBank.add(['Answer', 'Answer', 'Answer']);
+
+      // generate questions and answers
+      addMeInArray = generateNoMCQQueAns(addMeInArray);
+
+      if (!addMeInArray) {
+        addMeInArray = true;
+        questionBank.add(totalQuestion);
+        totalQuestion = [];
+        answerBank.add(totalQuestionAnswer);
+        totalQuestionAnswer = [];
+      }
+
+      // generate the PDF
+      final pdf = generateNoMCQPDF();
+
+      // show the PDF
+      await showPDF(pdf, context, 'NoMcq__');
+
+      setState(() {
+        isLoading = !isLoading;
+      });
+    }
+  }
+
+  pw.Document generateNoMCQPDF() {
+    final pdf = pw.Document();
+
+    // the questions page
+    pdf.addPage(
+      pw.MultiPage(
+        build: (pw.Context context) => <pw.Widget>[
+          pw.Header(level: 0, text: 'Questions'),
+          pw.Table.fromTextArray(context: context, data: questionBank),
+          pw.Padding(padding: const pw.EdgeInsets.all(10))
+        ],
+      ),
+    );
+
+    // the aswers page
+    pdf.addPage(
+      pw.MultiPage(
+        build: (pw.Context context) => <pw.Widget>[
+          pw.Padding(padding: const pw.EdgeInsets.all(10)),
+          pw.Header(text: 'Answer Sheet'),
+          pw.Table.fromTextArray(context: context, data: answerBank)
+        ],
+      ),
+    );
+    questionBank = [];
+    answerBank = [];
+    return pdf;
+  }
+
+  bool generateNoMCQQueAns(bool addMeInArray) {
+    for (var i = 1; i < int.parse(_ques.text) + 1; i++) {
+      addMeInArray = false;
+      final val1 = Random().nextInt(int.parse(_range1.text)) + 1;
+      final val2 = Random().nextInt(int.parse(_range2.text)) + 1;
+      if (widget.operator == 'sum') {
+        totalQuestion.add('$i]  $val1  +  $val2 =  ______ ');
+        totalQuestionAnswer.add('$i]  $val1  +  $val2 =  ${val1 + val2} ');
+      } else if (widget.operator == 'minus') {
+        totalQuestion.add('$i]  $val1  -  $val2 =  ______ ');
+        totalQuestionAnswer.add('$i]  $val1  -  $val2 =  ${val1 - val2} ');
+      } else if (widget.operator == 'multiplication') {
+        totalQuestion.add('$i]  $val1  *  $val2 =  ______ ');
+        totalQuestionAnswer.add('$i]  $val1  *  $val2 =  ${val1 * val2} ');
+      } else {
+        totalQuestion.add('$i]  $val1  /  $val2 =  ______ ');
+        totalQuestionAnswer.add(
+            '$i]  $val1  /  $val2 =  ${(val1 / val2).toStringAsFixed(2)} ');
+      }
+
+      // just to make sure that there are 3 questions in each line
+      if (i % 3 == 0) {
+        addMeInArray = true;
+        questionBank.add(totalQuestion);
+        totalQuestion = [];
+        answerBank.add(totalQuestionAnswer);
+        totalQuestionAnswer = [];
+      }
+    }
+    return addMeInArray;
   }
 }
