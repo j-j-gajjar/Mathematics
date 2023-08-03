@@ -1,0 +1,31 @@
+name: Flutter Web
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build Web
+    env:
+      my_secret: ${{secrets.commit_secret}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'dev'
+      - run: flutter pub get
+      - run: flutter build web
+      - run: |
+          cd build/web                                
+          perl -pi -e 's|<base href="/"/>|<base href="https://jaygajjar.ml/Mathematics/"/>|' index.html
+          git init
+          git config --global user.email "gajjarjay52@gmail.com"
+          git config --global user.name "j-j-gajjar"
+          git status
+          git remote -v
+          git config remote.origin.url "https://j-j-gajjar:${{secrets.commit_secret}}@github.com/j-j-gajjar/Mathematics.git"
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f

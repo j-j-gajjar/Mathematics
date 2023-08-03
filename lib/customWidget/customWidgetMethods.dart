@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
     preferredSize: const Size.fromHeight(60.0),
     child: Container(
       alignment: Alignment.center,
-      decoration: BoxDecoration(
+      dec
+      oration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
       ),
       child: AppBar(
