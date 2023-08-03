@@ -10,7 +10,7 @@ class AnswerScreen extends StatelessWidget {
   final List answers;
   final List userAnswer;
 
-  const AnswerScreen({this.score, this.maxScore, this.qustions, this.answers, this.userAnswer});
+  const AnswerScreen({this.score, this.maxScore, required this.qustions, required this.answers, required this.userAnswer});
 
   @override
   Widget build(BuildContext context) {

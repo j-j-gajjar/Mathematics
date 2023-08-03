@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ButtonIcon extends StatelessWidget {
   final IconData icon;
-  final Function function;
+  final Function()? function;
 
-  const ButtonIcon({this.icon, this.function});
+  const ButtonIcon({required this.icon, required this.function});
   @override
   Widget build(BuildContext context) {
     return Flexible(

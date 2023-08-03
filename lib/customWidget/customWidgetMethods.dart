@@ -22,31 +22,35 @@ import 'package:flutter/material.dart';
       ),
     ),
   );
-  *//*AppBar(
+  */ /*AppBar(
     leading: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back_ios, color: Colors.pink)),
     title: Text("Mathematics", style: TextStyle(color: Colors.pink)),
     centerTitle: true,
     backgroundColor: Colors.yellow,
     elevation: 0,
-  );*//*
+  );*/ /*
 }*/
 class customAppBar extends StatelessWidget {
   const customAppBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Icon(Icons.calculate_outlined,size: 50,),
-      title: Text("Mathematics ",style: TextStyle(
-          color: Colors.white,
-          fontSize: 30,
-          fontWeight: FontWeight.w500,
-          letterSpacing: 2
+      leading: Icon(
+        Icons.calculate_outlined,
+        size: 50,
       ),
+      title: Text(
+        "Mathematics ",
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 2),
       ),
-      backgroundColor:  Color(0XFF1ea366),
+      backgroundColor: Color(0XFF1ea366),
       elevation: 0,
     );
   }
