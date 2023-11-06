@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../HomeScreen.dart';
 import '../customWidget/customWidgetMethods.dart';
 import '../utils/colorConst.dart';
@@ -53,7 +53,7 @@ class AnswerScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Text('YOUR SCORE IS ${score.toString()}',
+            Text( AppLocalizations.of(context)!.scoreIs + score.toString(),
                 style: const TextStyle(
                   fontSize: 25,
                   color: baseColorLight,
@@ -61,7 +61,7 @@ class AnswerScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Text('OUT OF ${maxScore.toString()}',
+            Text(AppLocalizations.of(context)!.outOf + maxScore.toString(),
                 style: const TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -72,8 +72,8 @@ class AnswerScreen extends StatelessWidget {
             MaterialButton(
               onPressed: () => Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => const HomeScreen())),
-              child: const Text('Go To Home ->',
-                  style: TextStyle(color: Colors.blueAccent)),
+              child: Text(AppLocalizations.of(context)?.goToHome ?? 'Go To Home -> erro' ,
+                  style: const TextStyle(color: Colors.blueAccent)),
             ),
             const SizedBox(
               height: 30,
@@ -86,8 +86,8 @@ class AnswerScreen extends StatelessWidget {
                           answers: answers,
                           questions: questions,
                           userAnswer: userAnswer))),
-              child: const Text('Check Your Answer',
-                  style: TextStyle(color: Colors.blueAccent)),
+              child:  Text(AppLocalizations.of(context)?.checkYourAnswer ?? 'Check Your Answer',
+                  style: const TextStyle(color: Colors.blueAccent)),
             ),
           ],
         ),

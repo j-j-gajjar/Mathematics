@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'AskOperator.dart';
 import 'customWidget/DisplayButton.dart';
-
 import 'customWidget/customWidgetMethods.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+  static const routeName = '/home';
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                   height: 50,
                 ),
                 DisplayButton(
-                  text: 'Generate PDF',
+                  text: AppLocalizations.of(context)?.generatePdf ?? 'Generate PDF',
                   function: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -48,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                   height: (MediaQuery.of(context).size.height * 20) / 816,
                 ),
                 DisplayButton(
-                  text: 'Quiz',
+                  text: AppLocalizations.of(context)?.quiz ?? 'Quiz',
                   function: () => Navigator.push(
                     context,
                     MaterialPageRoute(
