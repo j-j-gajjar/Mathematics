@@ -1,0 +1,26 @@
+{
+  "appTitle": "Mathematics",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+
+
+  "generatePdf": "Gerar PDF",
+  "quiz": "Quiz",
+  "howManyQuestion": "Quantas Perguntas?",
+  "startValue": "Valor Iniçial",
+  "endValue": "Valor Final",
+  "time": "Tempo",
+  "generateQuiz": "GERAR QUIZ",
+  "scoreIs": "SUA PONTUAÇÃO:",
+  "outOf": "FORA DE",
+  "goToHome": "HOME",
+  "checkYourAnswer": "Verifique suas respostas",
+  "answer": "Resposta ="
+
+
+
+
+}
+
+
