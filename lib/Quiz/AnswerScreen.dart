@@ -39,9 +39,9 @@ class AnswerScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             if (score * 100 / maxScore > 75 == true)
-              Image.asset('assets/congratulation.gif')
+              Image.asset(getAssetPathCongratulation(context))
             else if (score * 100 / maxScore > 40 == true)
-              Image.asset('assets/nice-try.gif')
+              Image.asset(getAssetPathNicetry(context))
             else
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 60, 0),
@@ -53,7 +53,7 @@ class AnswerScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Text( AppLocalizations.of(context)!.scoreIs + score.toString(),
+            Text(AppLocalizations.of(context)!.scoreIs + score.toString(),
                 style: const TextStyle(
                   fontSize: 25,
                   color: baseColorLight,
@@ -69,29 +69,103 @@ class AnswerScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            MaterialButton(
-              onPressed: () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen())),
-              child: Text(AppLocalizations.of(context)?.goToHome ?? 'Go To Home -> erro' ,
-                  style: const TextStyle(color: Colors.blueAccent)),
+
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
+              width: double.infinity, // Largura total
+              child: ElevatedButton(
+                onPressed: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue, // Cor de fundo azul
+                ),
+                child: Text(
+                  AppLocalizations.of(context)?.goToHome ?? 'Go To Home -> erro',
+                  style:
+                  const TextStyle(color: Colors.white), // Cor do texto branco
+                ),
+              ),
             ),
             const SizedBox(
-              height: 30,
+              height: 10,
             ),
-            MaterialButton(
-              onPressed: () => Navigator.push(
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
+              width: double.infinity, // Largura total
+              child: ElevatedButton(
+                onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => UserAnswerScreen(
-                          answers: answers,
-                          questions: questions,
-                          userAnswer: userAnswer))),
-              child:  Text(AppLocalizations.of(context)?.checkYourAnswer ?? 'Check Your Answer',
-                  style: const TextStyle(color: Colors.blueAccent)),
+                    builder: (context) => UserAnswerScreen(
+                      answers: answers,
+                      questions: questions,
+                      userAnswer: userAnswer,
+                    ),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue, // Cor de fundo azul
+                ),
+                child: Text(
+                  AppLocalizations.of(context)?.checkYourAnswer ??
+                      'Check Your Answer',
+                  style: const TextStyle(
+                      color: Colors.white), // Cor do texto branco
+                ),
+              ),
             ),
           ],
         ),
       ),
     );
   }
+
+  Locale getCurrentLocale(BuildContext context) {
+    return Localizations.localeOf(context);
+  }
+  String getAssetPathCongratulation(BuildContext context) {
+    final Locale currentLocale = getCurrentLocale(context);
+    final String languageCode = currentLocale.languageCode;
+
+    // Defina os caminhos dos assets para diferentes idiomas
+    if (languageCode == 'es') {
+      return 'assets/congratulation.gif';
+    } else if (languageCode == 'pt') {
+      return 'assets/parabens-pt.gif';
+    } else {
+      // Padrão para outros idiomas
+      return 'assets/congratulation.gif';
+    }
+  }
+  String getAssetPathNicetry(BuildContext context) {
+    final Locale currentLocale = getCurrentLocale(context);
+    final String languageCode = currentLocale.languageCode;
+
+    // Defina os caminhos dos assets para diferentes idiomas
+    if (languageCode == 'es') {
+      return 'assets/congratulation.gif';
+    } else if (languageCode == 'pt') {
+      return 'assets/nice-try-pt.gif';
+    } else {
+      // Padrão para outros idiomas
+      return 'assets/nice-try.gif';
+    }
+  }
+  String getAssetPath(BuildContext context) {
+    final Locale currentLocale = getCurrentLocale(context);
+    final String languageCode = currentLocale.languageCode;
+
+    // Defina os caminhos dos assets para diferentes idiomas
+    if (languageCode == 'es') {
+      return 'assets/congratulation.gif';
+    } else if (languageCode == 'pt') {
+      return 'assets/parabens-pt.gif';
+    } else {
+      // Padrão para outros idiomas
+      return 'assets/congratulation.gif';
+    }
+  }
+
 }

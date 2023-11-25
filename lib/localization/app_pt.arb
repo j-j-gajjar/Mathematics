@@ -12,11 +12,11 @@
   "endValue": "Valor Final",
   "time": "Tempo",
   "generateQuiz": "GERAR QUIZ",
-  "scoreIs": "SUA PONTUAÇÃO:",
-  "outOf": "FORA DE",
+  "scoreIs": "SUA PONTUAÇÃO: ",
+  "outOf": "DE: ",
   "goToHome": "HOME",
   "checkYourAnswer": "Verifique suas respostas",
-  "answer": "Resposta ="
+  "answer": "Resposta = "
 
 
 

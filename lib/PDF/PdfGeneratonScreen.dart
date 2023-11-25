@@ -4,12 +4,12 @@ import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:universal_html/html.dart' as html;
-
 import '../customWidget/MainScreenCard.dart';
 import '../customWidget/customWidgetMethods.dart';
 import '../utils/colorConst.dart';
@@ -87,7 +87,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                           ques: _ques,
                           icon: widget.icon,
                           max: 3,
-                          label: 'How Many Question',
+                          label: AppLocalizations.of(context)?.howManyQuestion ?? 'How Many Question',
                           maxValue: 100,
                           hint: '20',
                         ),
@@ -95,14 +95,14 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                           ques: _range1,
                           icon: widget.icon,
                           max: 5,
-                          label: 'Start Value',
+                          label: AppLocalizations.of(context)?.startValue ?? 'Start Value',
                           hint: '35',
                         ),
                         MainScreenCard(
                           ques: _range2,
                           icon: widget.icon,
                           max: 5,
-                          label: 'End Value',
+                          label: AppLocalizations.of(context)?.endValue ?? 'End Value',
                           hint: '58',
                         ),
                       ],
