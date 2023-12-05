@@ -71,7 +71,7 @@ class _UserAnswerScreenState extends State<UserAnswerScreen> {
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text((AppLocalizations.of(context)?.answer ?? 'Answer =') + widget.answers[i].toString(),
+                        subtitle: Text((AppLocalizations.of(context)?.answer ?? 'Answer = > erro') + widget.answers[i].toString(),
                             style: const TextStyle(
                                 color: Colors.white54, fontSize: 15)),
                         trailing: Text(widget.userAnswer[i].toString(),

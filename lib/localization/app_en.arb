@@ -16,8 +16,10 @@
   "outOf": "OUT OF",
   "goToHome": "Go To Home ->",
   "checkYourAnswer": "Check Your Answer",
-  "answer": "Answer ="
-
+  "answer": "Answer =",
+  "pleaseInputSomething": "Please input something",
+  "valueMustBe3": "Value must be > 3",
+  "questionOnly": "100 Question Only"
 
 
 

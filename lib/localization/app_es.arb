@@ -1,21 +1,23 @@
 {
-  "appTitle": "Mathematics",
+  "appTitle": "Matemáticas",
   "@appTitle": {
-    "description": "The title of the application"
+    "description": "El título de la aplicación"
   },
-  "generatePdf": "Generate PDF",
+  "generatePdf": "Generar PDF",
   "quiz": "Quiz",
-  "howManyQuestion": "How Many Question",
-  "startValue": "Start Value",
-  "endValue": "End Value",
-  "time": "Time",
-  "generateQuiz": "GENERATE QUIZ",
-  "scoreIs": "YOUR SCORE IS",
-  "outOf": "OUT OF",
-  "goToHome": "Go To Home ->",
-  "checkYourAnswer": "Check Your Answer",
-  "answer": "Answer ="
-
+  "howManyQuestion": "¿Cuántas preguntas?",
+  "startValue": "Valor de inicio",
+  "endValue": "Valor final",
+  "time": "Tiempo",
+  "generateQuiz": "GENERAR QUIZ",
+  "scoreIs": "SU PUNTAJE ES",
+  "outOf": "DE",
+  "goToHome": "Ir a la Página Principal ->",
+  "checkYourAnswer": "Verificar sus respuestas",
+  "answer": "Respuesta =",
+  "pleaseInputSomething": "Por favor, ingrese algo",
+  "valueMustBe3": "El valor debe ser > 3",
+  "questionOnly": "Solo 100 Preguntas"
 }
 
 
