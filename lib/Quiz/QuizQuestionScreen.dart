@@ -11,7 +11,7 @@ class QuizQuestionScreen extends StatefulWidget {
     this.icon = Icons.add,
     this.operator = 'sum',
   });
-  static const routeName = '/quizquestionscreen';
+
   final IconData icon;
   final String operator;
 

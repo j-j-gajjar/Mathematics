@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'HomeScreen.dart';
-import 'Quiz/QuizQuestionScreen.dart';
-import 'Quiz/QuizScreen.dart';
+
 
 void main() => runApp( const MyApp());
 
@@ -28,10 +27,8 @@ class MyApp extends StatelessWidget {
           settings: routeSettings,
           builder: (BuildContext context) {
             switch (routeSettings.name) {
-              case QuizScreen.routeName:
-                return   const QuizScreen(duration: 10,);
-              case QuizQuestionScreen.routeName:
-                return  const QuizQuestionScreen();
+              case  HomeScreen.routeName:
+                return  const HomeScreen();
               default:
                 return const HomeScreen();
 

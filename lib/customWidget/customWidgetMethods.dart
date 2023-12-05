@@ -20,12 +20,10 @@ class CustomAppBar extends StatelessWidget {
         highlightColor: Colors.transparent,
         onPressed: () {
           if (kIsWeb)
-            Navigator.pushAndRemoveUntil(
+            Navigator.pushNamedAndRemoveUntil(
               context,
-              MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
-              ),
-              (route) => false,
+              HomeScreen.routeName,
+                  (route) => false,
             );
         },
       ),

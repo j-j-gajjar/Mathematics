@@ -1,15 +1,15 @@
 import 'dart:math';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../customWidget/QuizButtonIcon.dart';
 import '../utils/colorConst.dart';
 import 'AnswerScreen.dart';
 
 // ignore: must_be_immutable
 class QuizScreen extends StatefulWidget {
-  static const routeName = '/quizscreen';
   const QuizScreen({
     required this.duration,
     this.operator = 'sum',
@@ -18,6 +18,7 @@ class QuizScreen extends StatefulWidget {
     this.range1 = '5',
     this.range2 = '5',
   });
+
   final String operator;
   final String numOfQuestions;
   final String range1;

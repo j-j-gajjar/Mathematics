@@ -46,10 +46,7 @@ class AnswerScreen extends StatelessWidget {
             buildOutOfText(context),
             const SizedBox(height: 30),
             buildElevatedButton(
-              onPressed: () => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
-              ),
+              onPressed: () => Navigator.pushReplacementNamed(context, HomeScreen.routeName),
               label: AppLocalizations.of(context)?.goToHome ?? 'Go To Home -> erro',
             ),
             const SizedBox(height: 10),
