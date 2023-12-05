@@ -37,11 +37,5 @@ class MyApp extends StatelessWidget {
         );
       },
     );
-    // return MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   title: 'Mathematics',
-    //   theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
-    //   home: const HomeScreen(),
-    // );
   }
 }
