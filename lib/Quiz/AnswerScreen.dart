@@ -14,6 +14,7 @@ class AnswerScreen extends StatelessWidget {
     required this.answers,
     required this.userAnswer,
   });
+
   final int score;
   final int maxScore;
   final List<dynamic> questions;
@@ -38,85 +39,83 @@ class AnswerScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (score * 100 / maxScore > 75 == true)
-              Image.asset(getAssetPathCongratulation(context))
-            else if (score * 100 / maxScore > 40 == true)
-              Image.asset(getAssetPathNicetry(context))
-            else
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 60, 0),
-                child: Image.asset(
-                  'assets/betterluck.png',
-                  width: 300,
-                ),
+            buildImageBasedOnScore(context),
+            const SizedBox(height: 30),
+            buildScoreText(context),
+            const SizedBox(height: 30),
+            buildOutOfText(context),
+            const SizedBox(height: 30),
+            buildElevatedButton(
+              onPressed: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
               ),
-            const SizedBox(
-              height: 30,
+              label: AppLocalizations.of(context)?.goToHome ?? 'Go To Home -> erro',
             ),
-            Text(AppLocalizations.of(context)!.scoreIs + score.toString(),
-                style: const TextStyle(
-                  fontSize: 25,
-                  color: baseColorLight,
-                )),
-            const SizedBox(
-              height: 30,
-            ),
-            Text(AppLocalizations.of(context)!.outOf + maxScore.toString(),
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                )),
-            const SizedBox(
-              height: 30,
-            ),
-
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20.0),
-              width: double.infinity, // Largura total
-              child: ElevatedButton(
-                onPressed: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Cor de fundo azul
-                ),
-                child: Text(
-                  AppLocalizations.of(context)?.goToHome ?? 'Go To Home -> erro',
-                  style:
-                  const TextStyle(color: Colors.white), // Cor do texto branco
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20.0),
-              width: double.infinity, // Largura total
-              child: ElevatedButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => UserAnswerScreen(
-                      answers: answers,
-                      questions: questions,
-                      userAnswer: userAnswer,
-                    ),
+            const SizedBox(height: 10),
+            buildElevatedButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserAnswerScreen(
+                    answers: answers,
+                    questions: questions,
+                    userAnswer: userAnswer,
                   ),
                 ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Cor de fundo azul
-                ),
-                child: Text(
-                  AppLocalizations.of(context)?.checkYourAnswer ??
-                      'Check Your Answer',
-                  style: const TextStyle(
-                      color: Colors.white), // Cor do texto branco
-                ),
               ),
+              label: AppLocalizations.of(context)?.checkYourAnswer ?? 'Check Your Answer - erro',
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildImageBasedOnScore(BuildContext context) {
+    if (score * 100 / maxScore > 75)
+      return Image.asset(getAssetPath('congratulation', 'gif', context));
+    else if (score * 100 / maxScore > 40)
+      return Image.asset(getAssetPath('nice-try', 'gif', context));
+    else
+      return Image.asset(getAssetPath('betterluck', 'jpg', context));
+  }
+
+  Widget buildScoreText(BuildContext context) {
+    return Text(
+      AppLocalizations.of(context)!.scoreIs + score.toString(),
+      style: const TextStyle(
+        fontSize: 25,
+        color: baseColorLight,
+      ),
+    );
+  }
+
+  Widget buildOutOfText(BuildContext context) {
+    return Text(
+      AppLocalizations.of(context)!.outOf + maxScore.toString(),
+      style: const TextStyle(
+        fontSize: 20,
+        color: Colors.black,
+      ),
+    );
+  }
+
+  Widget buildElevatedButton({
+    required VoidCallback onPressed,
+    required String label,
+  }) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20.0),
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: baseColor,
+        ),
+        child: Text(
+          label,
+          style: const TextStyle(color: Colors.white),
         ),
       ),
     );
@@ -125,47 +124,18 @@ class AnswerScreen extends StatelessWidget {
   Locale getCurrentLocale(BuildContext context) {
     return Localizations.localeOf(context);
   }
-  String getAssetPathCongratulation(BuildContext context) {
+
+  String getAssetPath(String baseName, String fileExtension, BuildContext context) {
     final Locale currentLocale = getCurrentLocale(context);
     final String languageCode = currentLocale.languageCode;
 
-    // Defina os caminhos dos assets para diferentes idiomas
     if (languageCode == 'es') {
-      return 'assets/congratulation.gif';
+      return 'assets/$baseName-es.$fileExtension';
     } else if (languageCode == 'pt') {
-      return 'assets/parabens-pt.gif';
+      return 'assets/$baseName-pt.$fileExtension';
     } else {
-      // Padrão para outros idiomas
-      return 'assets/congratulation.gif';
+      return 'assets/$baseName.$fileExtension';
     }
   }
-  String getAssetPathNicetry(BuildContext context) {
-    final Locale currentLocale = getCurrentLocale(context);
-    final String languageCode = currentLocale.languageCode;
-
-    // Defina os caminhos dos assets para diferentes idiomas
-    if (languageCode == 'es') {
-      return 'assets/congratulation.gif';
-    } else if (languageCode == 'pt') {
-      return 'assets/nice-try-pt.gif';
-    } else {
-      // Padrão para outros idiomas
-      return 'assets/nice-try.gif';
-    }
-  }
-  String getAssetPath(BuildContext context) {
-    final Locale currentLocale = getCurrentLocale(context);
-    final String languageCode = currentLocale.languageCode;
-
-    // Defina os caminhos dos assets para diferentes idiomas
-    if (languageCode == 'es') {
-      return 'assets/congratulation.gif';
-    } else if (languageCode == 'pt') {
-      return 'assets/parabens-pt.gif';
-    } else {
-      // Padrão para outros idiomas
-      return 'assets/congratulation.gif';
-    }
-  }
-
 }
+
