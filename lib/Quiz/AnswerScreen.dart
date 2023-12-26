@@ -109,6 +109,10 @@ class AnswerScreen extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: baseColor,
+          padding: const EdgeInsets.symmetric(vertical: 15.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
         ),
         child: Text(
           label,

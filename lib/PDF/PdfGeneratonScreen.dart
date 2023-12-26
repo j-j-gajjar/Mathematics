@@ -43,7 +43,18 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
   List<List<dynamic>> questionBank = [];
   List<dynamic> totalQuestionAnswer = [];
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  String translator(int languagem){
+    final question = AppLocalizations.of(context)?.question ?? 'question';
+    final anwser = AppLocalizations.of(context)?.answerSheet ?? 'Arswer Sheet';
+    switch (languagem) {
+      case 1:
+        return question;
+      case 2:
+        return anwser;
+      default:
+    return "erro";
+  }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,8 +128,12 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                         });
                         bool addMeInArray = false;
                         questionBank
-                            .add(['Questions', 'Questions', 'Questions']);
-                        answerBank.add(['Answer', 'Answer', 'Answer']);
+                            .add([AppLocalizations.of(context)?.question ??'Questions - erro',
+                          AppLocalizations.of(context)?.question ??'Questions - erro',
+                          AppLocalizations.of(context)?.question ??'Questions - erro',]);
+                        answerBank.add([AppLocalizations.of(context)?.answer ??'Answer - erro',
+                          AppLocalizations.of(context)?.answer ??'Answer - erro',
+                          AppLocalizations.of(context)?.answer ??'Answer - erro']);
                         for (var i = 1; i < int.parse(_ques.text) + 1; i++) {
                           addMeInArray = false;
                           final val1 =
@@ -166,8 +181,8 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                         pdf.addPage(
                           pw.MultiPage(
                             build: (pw.Context context) => <pw.Widget>[
-                              pw.Header(level: 0, text: 'Questions'),
-                              pw.Table.fromTextArray(
+                              pw.Header(level: 0, text: translator(1)),
+                              pw.TableHelper.fromTextArray(
                                   context: context, data: questionBank),
                               pw.Padding(padding: const pw.EdgeInsets.all(10))
                             ],
@@ -177,8 +192,8 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                           pw.MultiPage(
                             build: (pw.Context context) => <pw.Widget>[
                               pw.Padding(padding: const pw.EdgeInsets.all(10)),
-                              pw.Header(text: 'Answer Sheet'),
-                              pw.Table.fromTextArray(
+                              pw.Header(text: translator(2)),
+                              pw.TableHelper.fromTextArray(
                                   context: context, data: answerBank)
                             ],
                           ),
@@ -246,10 +261,10 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                     },
                     elevation: 30,
                     color: baseColor,
-                    child: const Padding(
+                    child:  Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text('QUESTIONS (No-MCQ)',
-                            style: TextStyle(
+                        child: Text( '${AppLocalizations.of(context)!.question} (No-MCQ)',
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600))),
@@ -267,9 +282,9 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                         List<List<dynamic>> finalMcqPrint = [];
                         List<List<dynamic>> finalMcqAnswerPrint = [];
                         final List<dynamic> totalQuestionMCQ = [];
-                        finalMcqPrint.add(['Questors']);
+                        finalMcqPrint.add([AppLocalizations.of(context)?.question]);
                         finalMcqAnswerPrint.add([
-                          'Answers',
+                          AppLocalizations.of(context)?.answers,
                         ]);
                         for (var i = 1; i < int.parse(_ques.text) + 1; i++) {
                           final val1 =
@@ -413,7 +428,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                               pageFormat: PdfPageFormat.a4,
                               orientation: pw.PageOrientation.portrait,
                               build: (pw.Context context) => <pw.Widget>[
-                                pw.Table.fromTextArray(
+                                pw.TableHelper.fromTextArray(
                                     context: context, data: finalMcqPrint),
                                 pw.Padding(padding: const pw.EdgeInsets.all(10))
                               ],
@@ -423,8 +438,8 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                             pw.MultiPage(
                               build: (pw.Context context) => <pw.Widget>[
                                 pw.Padding(padding: const pw.EdgeInsets.all(5)),
-                                pw.Header(text: 'Answer Sheet'),
-                                pw.Table.fromTextArray(
+                                pw.Header(text: AppLocalizations.of(context as BuildContext)?.answerSheet),
+                                pw.TableHelper.fromTextArray(
                                     context: context, data: finalMcqAnswerPrint)
                               ],
                             ),
@@ -519,5 +534,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
         ),
       ),
     );
+
+
   }
 }

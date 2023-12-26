@@ -17,7 +17,10 @@
   "answer": "Respuesta =",
   "pleaseInputSomething": "Por favor, ingrese algo",
   "valueMustBe3": "El valor debe ser > 3",
-  "questionOnly": "Solo 100 Preguntas"
+  "questionOnly": "Solo 100 Preguntas",
+  "question": "Questions",
+  "answers": "Answer",
+  "answerSheet": "Answer Sheet"
 }
 
 

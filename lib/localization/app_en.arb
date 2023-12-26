@@ -19,7 +19,10 @@
   "answer": "Answer =",
   "pleaseInputSomething": "Please input something",
   "valueMustBe3": "Value must be > 3",
-  "questionOnly": "100 Question Only"
+  "questionOnly": "100 Question Only",
+  "question": "Questions",
+  "answers": "Answer",
+  "answerSheet": "Answer Sheet"
 
 
 
