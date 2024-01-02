@@ -30,16 +30,15 @@ To get started with this project, follow these steps:
 
 # Internationalization PT_BR Screenshots
 
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171704.png" width="200">
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171716.png" width="200">
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171724.png" width="200">
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171737.png" width="200">
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171751.png" width="200">
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171844.png" width="200">
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171813.png" width="200">
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171943.png" width="200">
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-172025.png" width="200">
-<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-172214.png" width="200">
+<img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171704.png" width="200"><img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171716.png" width="200"><img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171724.png" width="200"><img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171737.png" width="200"><img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171751.png" width="200"><img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171844.png" width="200"><img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171813.png" width="200"><img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-171943.png" width="200"><img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-172025.png" width="200"><img src="Screenshots/Screnshots-pt_br/Screenshot_20240102-172214.png" width="200">
+
+
+
+
+
+
+
+
 
 
 # Contributing
