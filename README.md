@@ -28,6 +28,10 @@ To get started with this project, follow these steps:
 
 <img src="https://raw.githubusercontent.com/j-j-gajjar/Mathematics/master/Screenshots/Phone%20Screenshot%201.jpg" width="200">  <img src="https://raw.githubusercontent.com/j-j-gajjar/Mathematics/master/Screenshots/Phone%20Screenshot%203.jpg" width="200"> <img src="https://raw.githubusercontent.com/j-j-gajjar/Mathematics/master/Screenshots/Phone%20Screenshot%204.jpg" width="200"> <img src="https://raw.githubusercontent.com/j-j-gajjar/Mathematics/master/Screenshots/Phone%20Screenshot%205.jpg" width="200"> <img src="https://raw.githubusercontent.com/j-j-gajjar/Mathematics/master/Screenshots/Phone%20Screenshot%206.jpg" width="200"> <img src="https://raw.githubusercontent.com/j-j-gajjar/Mathematics/master/Screenshots/Phone%20Screenshot%207.jpg" width="200">
 
+# internationalization PT_BR screenshots
+
+
+
 
 # Contributing
 Contributions are welcome and encouraged! If you find a bug, have a suggestion for improvement, or want to add a feature, feel free to submit a pull request or open an issue.
