@@ -1,5 +1,5 @@
 {
-  "appTitle": "Matemáticas",
+  "appTitle": "Mathematics",
   "@appTitle": {
     "description": "El título de la aplicación"
   },
@@ -18,9 +18,8 @@
   "pleaseInputSomething": "Por favor, ingrese algo",
   "valueMustBe3": "El valor debe ser > 3",
   "questionOnly": "Solo 100 Preguntas",
-  "question": "Questions",
-  "answers": "Answer",
-  "answerSheet": "Answer Sheet"
+  "question": "Preguntas",
+  "answers": "Respuesta",
+  "answerSheet": "Hoja de Respuestas"
 }
-
 

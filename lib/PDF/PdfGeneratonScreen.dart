@@ -131,9 +131,9 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                             .add([AppLocalizations.of(context)?.question ??'Questions - erro',
                           AppLocalizations.of(context)?.question ??'Questions - erro',
                           AppLocalizations.of(context)?.question ??'Questions - erro',]);
-                        answerBank.add([AppLocalizations.of(context)?.answer ??'Answer - erro',
-                          AppLocalizations.of(context)?.answer ??'Answer - erro',
-                          AppLocalizations.of(context)?.answer ??'Answer - erro']);
+                        answerBank.add([AppLocalizations.of(context)?.answers ??'Answer - erro',
+                          AppLocalizations.of(context)?.answers ??'Answer - erro',
+                          AppLocalizations.of(context)?.answers ??'Answer - erro']);
                         for (var i = 1; i < int.parse(_ques.text) + 1; i++) {
                           addMeInArray = false;
                           final val1 =
@@ -262,7 +262,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                     elevation: 30,
                     color: baseColor,
                     child:  Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Text( '${AppLocalizations.of(context)!.question} (No-MCQ)',
                             style: const TextStyle(
                                 color: Colors.white,
@@ -438,7 +438,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                             pw.MultiPage(
                               build: (pw.Context context) => <pw.Widget>[
                                 pw.Padding(padding: const pw.EdgeInsets.all(5)),
-                                pw.Header(text: AppLocalizations.of(context as BuildContext)?.answerSheet),
+                                pw.Header(text: translator(2)),
                                 pw.TableHelper.fromTextArray(
                                     context: context, data: finalMcqAnswerPrint)
                               ],
