@@ -105,7 +105,7 @@ class AnswerScreen extends StatelessWidget {
   }) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20.0),
-      width: MediaQuery.of(context).size.width * 0.5,
+      width: MediaQuery.of(context).size.width * 0.7,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
