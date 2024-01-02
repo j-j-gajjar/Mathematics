@@ -47,7 +47,7 @@ class AnswerScreen extends StatelessWidget {
             const SizedBox(height: 30),
             buildElevatedButton(
               onPressed: () => Navigator.pushReplacementNamed(context, HomeScreen.routeName),
-              label: AppLocalizations.of(context)?.goToHome ?? 'Go To Home -> erro',
+              label: AppLocalizations.of(context)?.goToHome ?? 'Go To Home -> erro', context: context,
             ),
             const SizedBox(height: 10),
             buildElevatedButton(
@@ -61,7 +61,7 @@ class AnswerScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              label: AppLocalizations.of(context)?.checkYourAnswer ?? 'Check Your Answer - erro',
+              label: AppLocalizations.of(context)?.checkYourAnswer ?? 'Check Your Answer - erro', context: context,
             ),
           ],
         ),
@@ -99,12 +99,13 @@ class AnswerScreen extends StatelessWidget {
   }
 
   Widget buildElevatedButton({
+    required BuildContext context, // Adicione o parâmetro BuildContext aqui
     required VoidCallback onPressed,
     required String label,
   }) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20.0),
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width * 0.5,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -121,6 +122,7 @@ class AnswerScreen extends StatelessWidget {
       ),
     );
   }
+
 
   Locale getCurrentLocale(BuildContext context) {
     return Localizations.localeOf(context);
