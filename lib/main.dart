@@ -11,7 +11,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mathematics',
-      theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
+      theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        appBarTheme: const AppBarTheme(toolbarHeight: 60),
+      ),
       home: const HomeScreen(),
     );
   }

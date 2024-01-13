@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../customWidget/customWidgetMethods.dart';
+import '../customWidget/shared_appbar.dart';
 import '../utils/colorConst.dart';
 
 class UserAnswerScreen extends StatefulWidget {
@@ -23,16 +23,8 @@ class _UserAnswerScreenState extends State<UserAnswerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60.0),
-        child: Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: const CustomAppBar(),
-        ),
-      ),
+      appBar: sharedAppBar(),
+
       body: Center(
         child: SingleChildScrollView(
           child: Column(

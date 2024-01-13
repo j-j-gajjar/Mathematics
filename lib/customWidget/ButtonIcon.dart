@@ -12,27 +12,23 @@ class ButtonIcon extends StatelessWidget {
   final Function() function;
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: MaterialButton(
+    final width = MediaQuery.of(context).size.width;
+    return SizedBox(
+      width: width > 550 ? 200 : width / 2.3,
+      height: width > 550 ? 200 : width / 3,
+      child: ElevatedButton(
         onPressed: function,
-        child: Container(
-          decoration: BoxDecoration(
-            color: baseColor,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          width: MediaQuery.of(context).size.width > 550
-              ? 200
-              : MediaQuery.of(context).size.width / 2,
-          height: MediaQuery.of(context).size.width > 550
-              ? 200
-              : MediaQuery.of(context).size.width / 3,
-          child: Hero(
-            tag: icon,
-            child: Icon(
-              icon,
-              size: 50,
-              color: Colors.white,
-            ),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: baseColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            )),
+        child: Hero(
+          tag: icon,
+          child: Icon(
+            icon,
+            size: 50,
+            color: Colors.white,
           ),
         ),
       ),

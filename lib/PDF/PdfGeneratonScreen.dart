@@ -167,7 +167,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                           pw.MultiPage(
                             build: (pw.Context context) => <pw.Widget>[
                               pw.Header(level: 0, text: 'Questions'),
-                              pw.Table.fromTextArray(
+                              pw.TableHelper.fromTextArray(
                                   context: context, data: questionBank),
                               pw.Padding(padding: const pw.EdgeInsets.all(10))
                             ],
@@ -178,7 +178,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                             build: (pw.Context context) => <pw.Widget>[
                               pw.Padding(padding: const pw.EdgeInsets.all(10)),
                               pw.Header(text: 'Answer Sheet'),
-                              pw.Table.fromTextArray(
+                              pw.TableHelper.fromTextArray(
                                   context: context, data: answerBank)
                             ],
                           ),
@@ -413,7 +413,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                               pageFormat: PdfPageFormat.a4,
                               orientation: pw.PageOrientation.portrait,
                               build: (pw.Context context) => <pw.Widget>[
-                                pw.Table.fromTextArray(
+                                pw.TableHelper.fromTextArray(
                                     context: context, data: finalMcqPrint),
                                 pw.Padding(padding: const pw.EdgeInsets.all(10))
                               ],
@@ -424,7 +424,7 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                               build: (pw.Context context) => <pw.Widget>[
                                 pw.Padding(padding: const pw.EdgeInsets.all(5)),
                                 pw.Header(text: 'Answer Sheet'),
-                                pw.Table.fromTextArray(
+                                pw.TableHelper.fromTextArray(
                                     context: context, data: finalMcqAnswerPrint)
                               ],
                             ),
