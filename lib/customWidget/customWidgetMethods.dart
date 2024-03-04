@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../HomeScreen.dart';
 import '../utils/colorConst.dart';
 
@@ -20,18 +20,16 @@ class CustomAppBar extends StatelessWidget {
         highlightColor: Colors.transparent,
         onPressed: () {
           if (kIsWeb)
-            Navigator.pushAndRemoveUntil(
+            Navigator.pushNamedAndRemoveUntil(
               context,
-              MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
-              ),
-              (route) => false,
+              HomeScreen.routeName,
+                  (route) => false,
             );
         },
       ),
-      title: const Text(
-        'Mathematics ',
-        style: TextStyle(
+      title:  Text(
+        AppLocalizations.of(context)?.appTitle ?? 'Mathematics',
+        style: const TextStyle(
             color: Colors.white,
             fontSize: 30,
             fontWeight: FontWeight.w500,

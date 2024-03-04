@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../customWidget/customWidgetMethods.dart';
 import '../utils/colorConst.dart';
@@ -70,8 +71,7 @@ class _UserAnswerScreenState extends State<UserAnswerScreen> {
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(
-                            'Answer = ${widget.answers[i].toString()}',
+                        subtitle: Text((AppLocalizations.of(context)?.answer ?? 'Answer = > erro') + widget.answers[i].toString(),
                             style: const TextStyle(
                                 color: Colors.white54, fontSize: 15)),
                         trailing: Text(widget.userAnswer[i].toString(),

@@ -7,6 +7,8 @@ import 'customWidget/customWidgetMethods.dart';
 
 class AskOperator extends StatelessWidget {
   const AskOperator({super.key, required this.isQuiz});
+  static const routeName = '/operator';
+
   final bool isQuiz;
   @override
   Widget build(BuildContext context) {
