@@ -1,6 +1,6 @@
 # Mathematics flutter
 
-Mathematics Flutter is a collection of mathematical functions and tools that can be used in a variety of applications. The project includes functions for performing basic arithmetic operations (addition, subtraction, multiplication, division), working with matrices, calculating statistical measures, and more. Additionally, the project supports generating multiple choice question (MCQ) and question with answer PDFs, quizzes, web, and PWA support for desktop.
+Mathematics Flutter is a collection of mathematical functions and tools that can be used in a variety of applications. The project includes functions for performing basic arithmetic operations (addition, subtraction, multiplication, division), working with matrices, calculating statistical measures, and more. Additionally, the project supports generating multiple choice questions (MCQ) and question-with-answer PDFs, quizzes, web, and PWA support for desktop.
 
 # Features
 * Basic arithmetic operations: Addition, subtraction, multiplication, division
@@ -13,7 +13,7 @@ Mathematics Flutter is a collection of mathematical functions and tools that can
 * PWA support for desktop
 
 # Demo
-You can try a live demo of Mathematics Flutter at https://jaygajjar.ml/Mathematics/
+You can try a live demo of Mathematics Flutter at https://j-j-gajjar.github.io/Mathematics/
 
 # Getting Started
 
