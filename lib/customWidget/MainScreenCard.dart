@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../utils/colorConst.dart';
 
 class MainScreenCard extends StatelessWidget {
@@ -30,11 +30,11 @@ class MainScreenCard extends StatelessWidget {
         keyboardType: TextInputType.number,
         validator: (val) {
           if (val!.isEmpty) {
-            return 'Please input something';
+            return AppLocalizations.of(context)?.pleaseInputSomething ?? 'Please input something - erro';
           } else if (int.parse(val) < 2) {
-            return 'Value must be >3';
+            return AppLocalizations.of(context)?.valueMustBe3 ??'Value must be >3 - erro';
           } else if (int.parse(val) > maxValue) {
-            return '100 Question Only';
+            return AppLocalizations.of(context)?.questionOnly ?? '100 Question Only - erro';
           }
           return null;
         },

@@ -19,6 +19,9 @@ dependencies:
   modal_progress_hud_nsn: ^0.4.0
   universal_html: ^2.0.8
   circular_countdown_timer: ^0.2.1
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 
 
@@ -29,5 +32,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
   assets:
     - assets/

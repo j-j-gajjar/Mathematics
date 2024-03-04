@@ -18,6 +18,7 @@ class QuizScreen extends StatefulWidget {
     this.range1 = '5',
     this.range2 = '5',
   });
+
   final String operator;
   final String numOfQuestions;
   final String range1;

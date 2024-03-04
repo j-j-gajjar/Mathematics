@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'AskOperator.dart';
 import 'customWidget/DisplayButton.dart';
+
 import 'customWidget/shared_appbar.dart';
+
+import 'customWidget/customWidgetMethods.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+  static const routeName = '/home';
+
 
   @override
   Widget build(BuildContext context) {

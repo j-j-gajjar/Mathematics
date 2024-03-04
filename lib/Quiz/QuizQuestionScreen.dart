@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../customWidget/MainScreenCard.dart';
 import '../customWidget/shared_appbar.dart';
 import '../utils/colorConst.dart';
@@ -11,6 +11,7 @@ class QuizQuestionScreen extends StatefulWidget {
     this.icon = Icons.add,
     this.operator = 'sum',
   });
+
   final IconData icon;
   final String operator;
 
@@ -59,20 +60,20 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
                           ques: _ques,
                           icon: widget.icon,
                           max: 3,
-                          label: 'How Many Question',
+                          label: AppLocalizations.of(context)?.howManyQuestion ?? 'How Many Question',
                           maxValue: 100,
                           hint: '20'),
                       MainScreenCard(
                           ques: _range1,
                           icon: widget.icon,
                           max: 5,
-                          label: 'Start Value',
+                          label: AppLocalizations.of(context)?.startValue ?? 'Start Value',
                           hint: '20'),
                       MainScreenCard(
                           ques: _range2,
                           icon: widget.icon,
                           max: 5,
-                          label: 'End Value',
+                          label: AppLocalizations.of(context)?.endValue ?? 'End Value',
                           hint: '55'),
                     ],
                   ),
@@ -80,7 +81,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
                 SizedBox(
                   width: 200,
                   child: ExpansionTile(
-                    title: const Text('Time'),
+                    title: Text( AppLocalizations.of(context)?.time ?? 'Time'),
                     childrenPadding: const EdgeInsets.fromLTRB(30, 2, 30, 10),
                     leading: const Icon(Icons.watch_later_rounded),
                     trailing: Text('${time.toString()}s'),
@@ -140,10 +141,10 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
                   },
                   elevation: 20,
                   color: baseColor,
-                  child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('GENERATE QUIZ',
-                          style: TextStyle(
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(AppLocalizations.of(context)?.generateQuiz ?? 'GENERATE QUIZ',
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 30,
                               fontWeight: FontWeight.w600))),
