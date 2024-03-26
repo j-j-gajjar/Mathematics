@@ -11,8 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return  MaterialApp(
       restorationScopeId: 'app',
+       theme: ThemeData(
+        appBarTheme: const AppBarTheme(toolbarHeight: 60),
+      ),
       localizationsDelegates:  const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -36,6 +40,7 @@ class MyApp extends StatelessWidget {
           },
         );
       },
+
     );
   }
 }

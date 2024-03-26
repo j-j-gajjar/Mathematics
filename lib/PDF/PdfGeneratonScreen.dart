@@ -181,7 +181,9 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                         pdf.addPage(
                           pw.MultiPage(
                             build: (pw.Context context) => <pw.Widget>[
+
                               pw.Header(level: 0, text: translator(1)),
+
                               pw.TableHelper.fromTextArray(
                                   context: context, data: questionBank),
                               pw.Padding(padding: const pw.EdgeInsets.all(10))
@@ -192,7 +194,9 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                           pw.MultiPage(
                             build: (pw.Context context) => <pw.Widget>[
                               pw.Padding(padding: const pw.EdgeInsets.all(10)),
+
                               pw.Header(text: translator(2)),
+
                               pw.TableHelper.fromTextArray(
                                   context: context, data: answerBank)
                             ],
@@ -438,7 +442,9 @@ class _PdfGenerationScreenState extends State<PdfGenerationScreen> {
                             pw.MultiPage(
                               build: (pw.Context context) => <pw.Widget>[
                                 pw.Padding(padding: const pw.EdgeInsets.all(5)),
+
                                 pw.Header(text: translator(2)),
+
                                 pw.TableHelper.fromTextArray(
                                     context: context, data: finalMcqAnswerPrint)
                               ],
