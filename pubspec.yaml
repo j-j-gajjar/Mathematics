@@ -14,9 +14,9 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   pdf: ^3.8.1
   path_provider: ^2.0.10
-  syncfusion_flutter_pdfviewer: ^20.1.57-beta
-  printing: ^5.9.1
-  modal_progress_hud_nsn: ^0.1.0-nullsafety-1
+  syncfusion_flutter_pdfviewer: ^31.2.12
+  printing: ^5.14.2
+  modal_progress_hud_nsn: ^0.5.1
   universal_html: ^2.0.8
   circular_countdown_timer: ^0.2.1
 
