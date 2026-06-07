@@ -14,7 +14,7 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   pdf: ^3.8.1
   path_provider: ^2.0.10
-  syncfusion_flutter_pdfviewer: ^31.2.12
+  syncfusion_flutter_pdfviewer: ^29.1.38
   printing: ^5.14.2
   modal_progress_hud_nsn: ^0.5.1
   universal_html: ^2.0.8
